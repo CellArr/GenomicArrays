@@ -3,6 +3,7 @@ import shutil
 from typing import Union
 
 import numpy as np
+import pandas as pd
 import tiledb
 
 __author__ = "Jayaram Kancherla"
@@ -20,7 +21,7 @@ def create_tiledb_array_chrm(
     x_dim_dtype: np.dtype = np.uint32,
     y_dim_dtype: np.dtype = np.uint32,
     matrix_dim_dtype: np.dtype = np.uint32,
-    is_sparse: bool = False,
+    is_sparse: bool = True,
 ):
     """Create a TileDB file with the provided attributes to persistent storage.
 
@@ -69,7 +70,7 @@ def create_tiledb_array_chrm(
 
         is_sparse:
             Whether the matrix is sparse.
-            Defaults to False.
+            Defaults to True.
     """
 
     if x_dim_length is None:
@@ -101,6 +102,45 @@ def create_tiledb_array_chrm(
     tdbfile.close()
 
 
+def write_frame_intervals_to_tiledb(
+    tiledb_array_uri: Union[str, tiledb.SparseArray],
+    data: pd.DataFrame,
+    y_idx: int,
+    value_dtype: np.dtype = np.uint32,
+):
+    """Append and save intervals to TileDB.
+
+    Args:
+        tiledb_array_uri:
+            TileDB array object or path to a TileDB object.
+
+        data:
+            Input dataframe to write to TileDB, must contain
+            columns, "start", "end" and "value".
+
+        value_dtype:
+            NumPy dtype to reformat the matrix values.
+            Defaults to ``uint32``.
+    """
+    tiledb_fp = tiledb_array_uri
+    if isinstance(tiledb_array_uri, str):
+        tiledb_fp = tiledb.open(tiledb_array_uri, "w")
+
+    if not isinstance(data, (pd.DataFrame)):
+        raise TypeError("Intervals not provided as pandas DataFrame.")
+
+    if data is None or len(data) == 0:
+        return
+
+    for _, row in data.iterrows():
+        _len = row["end"] - row["start"]
+        tiledb_fp[np.arange(row["start"], row["end"]), np.repeat(y_idx, _len)] = (
+            np.repeat(row["value"], _len)
+        )
+
+    tiledb_fp.close()
+
+
 def write_array_to_tiledb(
     tiledb_array_uri: Union[str, tiledb.SparseArray],
     data: np.ndarray,
@@ -116,6 +156,7 @@ def write_array_to_tiledb(
         raise TypeError("'data' is not an `ndarray`.")
 
     tiledb_fp[0:x_idx, y_idx] = data.astype(value_dtype)
+    tiledb_fp.close()
 
 
 def optimize_tiledb_array(tiledb_array_uri: str, verbose: bool = True):

@@ -56,8 +56,8 @@ __license__ = "MIT"
 def build_genomicarray(
     files: list,
     output_path: str,
+    filter_to_regions: Union[str, pd.DataFrame],
     genome: Union[str, pd.DataFrame] = "hg38",
-    # filter_to_regions: Union[str, pd.DataFrame],
     sample_metadata: Union[pd.DataFrame, str] = None,
     sample_metadata_options: bopt.SampleMetadataOptions = bopt.SampleMetadataOptions(),
     matrix_options: bopt.MatrixOptions = bopt.MatrixOptions(),
@@ -113,7 +113,6 @@ def build_genomicarray(
     ####
     ## Writing the sample metadata file
     ####
-
     if isinstance(genome, str):
         chrom_sizes = pd.read_csv(
             "https://hgdownload.soe.ucsc.edu/goldenpath/hg38/bigZips/hg38.chrom.sizes",
@@ -181,7 +180,7 @@ def build_genomicarray(
 
         _chrm_group_base = f"{output_path}/ranges"
         for idx, seq in chrom_sizes.iterrows():
-            uta.create_tiledb_array(
+            uta.create_tiledb_array_chrm(
                 f"{_chrm_group_base}/{seq['chrom']}",
                 x_dim_length=seq["length"],
                 y_dim_length=len(files),
@@ -192,9 +191,7 @@ def build_genomicarray(
         all_bws = [(_chrm_group_base, bwpath, idx) for idx, bwpath in enumerate(files)]
         input_options = list(itertools.product(all_bws, chrom_sizes["chrom"]))
 
-        _write_bws_to_tiledb(
-            input_options, outpath=output_path, num_threads=num_threads
-        )
+        _write_bws_to_tiledb(input_options, num_threads=num_threads)
 
         # if optimize_tiledb:
         #     uta.optimize_tiledb_array(_counts_uri)
@@ -209,10 +206,12 @@ def build_genomicarray(
 
 
 def _range_writer(outpath, bwpath, bwidx, chrm):
-    data, chrom_length = ubw.extract_bw(bwpath, chrm)
+    print("query params: ", outpath, bwpath, bwidx, chrm)
+    data = ubw.extract_bw_intervals(bwpath, chrm)
 
     if data is not None:
-        uta.write_array_to_tiledb(f"{outpath}/{chrm}", data, chrom_length, bwidx)
+        print("data is not None:::", type(data))
+        uta.write_frame_intervals_to_tiledb(f"{outpath}/{chrm}", data=data, y_idx=bwidx)
 
 
 def _wrapper_extract_info(args):
