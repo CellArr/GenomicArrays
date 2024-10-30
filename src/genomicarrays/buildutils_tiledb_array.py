@@ -115,7 +115,7 @@ def write_array_to_tiledb(
     if not isinstance(data, (np.ndarray)):
         raise TypeError("'data' is not an `ndarray`.")
 
-    tiledb_fp[:x_idx, y_idx] = data.astype(value_dtype)
+    tiledb_fp[0:x_idx, y_idx] = data.astype(value_dtype)
 
 
 def optimize_tiledb_array(tiledb_array_uri: str, verbose: bool = True):

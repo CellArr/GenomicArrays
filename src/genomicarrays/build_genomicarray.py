@@ -1,6 +1,6 @@
 """Build the `GenomicArrayDatset`.
 
-The `GenomicArrayDatset` method is designed to store genomic range-based 
+The `GenomicArrayDatset` method is designed to store genomic range-based
 datasets from BigWig, BigBed or other similar files.
 
 Example:
@@ -28,20 +28,22 @@ Example:
         )
 """
 
+import itertools
 import os
 import warnings
+from multiprocessing import Pool
 from typing import Dict, Union
 
-import pyBigWig as bw
 import numpy as np
 import pandas as pd
+import pyBigWig as bw
 import tiledb
-from multiprocessing import Pool
+from cellarr import buildutils_tiledb_frame as utf
 
 from . import build_options as bopt
 from . import buildutils_tiledb_array as uta
-from cellarr import buildutils_tiledb_frame as utf
 from . import utils_bw as ubw
+
 # from .GenomicArrayDataset import GenomicArrayDataset
 
 __author__ = "Jayaram Kancherla"
@@ -88,7 +90,7 @@ def build_genomicarray(
             order as the input list of ``files``.
 
             Defaults to `None`, in which case, we create a simple sample
-            metadata dataframe containing the list of datasets, aka 
+            metadata dataframe containing the list of datasets, aka
             each BigWig files. Each dataset is named as ``sample_{i}``
             where `i` refers to the index position of the object in ``files``.
 
@@ -107,17 +109,30 @@ def build_genomicarray(
     """
     if not os.path.isdir(output_path):
         raise ValueError("'output_path' must be a directory.")
-    
+
     ####
     ## Writing the sample metadata file
     ####
 
     if isinstance(genome, str):
-        chrom_sizes = pd.read_csv("https://hgdownload.soe.ucsc.edu/goldenpath/hg38/bigZips/hg38.chrom.sizes", sep="\t", header=None, names=["chrom", "length"])
+        chrom_sizes = pd.read_csv(
+            "https://hgdownload.soe.ucsc.edu/goldenpath/hg38/bigZips/hg38.chrom.sizes",
+            sep="\t",
+            header=None,
+            names=["chrom", "length"],
+        )
     elif isinstance(genome, pd.DataFrame):
         chrom_sizes = genome
+        if "chrom" not in chrom_sizes:
+            raise ValueError(f"genome does not contain column: 'chrom'.")
+
+        if "length" not in chrom_sizes:
+            raise ValueError(f"genome does not contain column: 'length'.")
+
     else:
-        raise TypeError("'genome' is not an expected type (either 'str' or 'Dataframe').")
+        raise TypeError(
+            "'genome' is not an expected type (either 'str' or 'Dataframe')."
+        )
 
     ####
     ## Writing the sample metadata file
@@ -168,14 +183,21 @@ def build_genomicarray(
         for idx, seq in chrom_sizes.iterrows():
             uta.create_tiledb_array(
                 f"{_chrm_group_base}/{seq['chrom']}",
-                x_dim_length = seq['length'],
-                y_dim_length = len(files),
-                matrix_attr_name = matrix_options.matrix_attr_name,
-                matrix_dim_dtype = matrix_options.dtype,
+                x_dim_length=seq["length"],
+                y_dim_length=len(files),
+                matrix_attr_name=matrix_options.matrix_attr_name,
+                matrix_dim_dtype=matrix_options.dtype,
             )
 
-        if optimize_tiledb:
-            uta.optimize_tiledb_array(_counts_uri)
+        all_bws = [(_chrm_group_base, bwpath, idx) for idx, bwpath in enumerate(files)]
+        input_options = list(itertools.product(all_bws, chrom_sizes["chrom"]))
+
+        _write_bws_to_tiledb(
+            input_options, outpath=output_path, num_threads=num_threads
+        )
+
+        # if optimize_tiledb:
+        #     uta.optimize_tiledb_array(_counts_uri)
 
     # return GenomicArrayDataset(
     #     dataset_path=output_path,
@@ -185,23 +207,22 @@ def build_genomicarray(
     #     matrix_tdb_uri=matrix_options.tiledb_store_name,
     # )
 
+
 def _range_writer(outpath, bwpath, bwidx, chrm):
+    data, chrom_length = ubw.extract_bw(bwpath, chrm)
+
+    if data is not None:
+        uta.write_array_to_tiledb(f"{outpath}/{chrm}", data, chrom_length, bwidx)
 
 
 def _wrapper_extract_info(args):
-    outpath, bwpath, bwidx, chrm = args
-    return _range_writer(outpath, bwpath, bwidx, chrm)
+    iopt, chrm = args
+    return _range_writer(iopt[0], iopt[1], iopt[2], chrm)
 
 
-def extract_anndata_info(
-    h5ad_or_adata: List[Union[str, anndata.AnnData]],
-    var_feature_column: str = "index",
-    obs_subset_columns: dict = None,
+def _write_bws_to_tiledb(
+    input_options: list,
     num_threads: int = 1,
 ):
     with Pool(num_threads) as p:
-        _args = [
-            (file_info, var_feature_column, obs_subset_columns)
-            for file_info in h5ad_or_adata
-        ]
-        return p.map(_wrapper_extract_info, _args)
+        return p.map(_wrapper_extract_info, input_options)
