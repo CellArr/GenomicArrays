@@ -11,7 +11,7 @@ __copyright__ = "Jayaram Kancherla"
 __license__ = "MIT"
 
 
-def create_tiledb_array_chrm(
+def create_tiledb_array(
     tiledb_uri_path: str,
     x_dim_length: int = None,
     y_dim_length: int = None,
@@ -91,7 +91,13 @@ def create_tiledb_array_chrm(
         filters=tiledb.FilterList([tiledb.GzipFilter()]),
     )
 
-    schema = tiledb.ArraySchema(domain=dom, sparse=is_sparse, attrs=[tdb_attr])
+    schema = tiledb.ArraySchema(
+        domain=dom,
+        sparse=is_sparse,
+        attrs=[tdb_attr],
+        cell_order="row-major",
+        tile_order="row-major",
+    )
 
     if os.path.exists(tiledb_uri_path):
         shutil.rmtree(tiledb_uri_path)
@@ -104,50 +110,47 @@ def create_tiledb_array_chrm(
 
 def write_frame_intervals_to_tiledb(
     tiledb_array_uri: Union[str, tiledb.SparseArray],
-    data: pd.DataFrame,
+    data: np.ndarray,
     y_idx: int,
-    value_dtype: np.dtype = np.uint32,
+    value_dtype: np.dtype = np.float32,
 ):
-    """Append and save intervals to TileDB.
+    """Append and save array data to TileDB.
+    Expect data for one full sample (column).
 
     Args:
         tiledb_array_uri:
             TileDB array object or path to a TileDB object.
 
         data:
-            Input dataframe to write to TileDB, must contain
+            numpy array to write to TileDB, must contain
             columns, "start", "end" and "value".
 
         value_dtype:
             NumPy dtype to reformat the matrix values.
-            Defaults to ``uint32``.
+            Defaults to ``float32``.
     """
+    if data is None or len(data) == 0:
+        return
+
+    if not isinstance(data, (np.ndarray)):
+        raise TypeError("Intervals not provided as numpy ndarray.")
+
     tiledb_fp = tiledb_array_uri
     if isinstance(tiledb_array_uri, str):
         tiledb_fp = tiledb.open(tiledb_array_uri, "w")
 
-    if not isinstance(data, (pd.DataFrame)):
-        raise TypeError("Intervals not provided as pandas DataFrame.")
-
-    if data is None or len(data) == 0:
-        return
-
-    for _, row in data.iterrows():
-        _len = row["end"] - row["start"]
-        tiledb_fp[np.arange(row["start"], row["end"]), np.repeat(y_idx, _len)] = (
-            np.repeat(row["value"], _len)
-        )
-
+    tiledb_fp[0 : len(data), y_idx] = data.astype(value_dtype)
     tiledb_fp.close()
 
 
-def write_array_to_tiledb(
+def write_array_chunks_to_tiledb(
     tiledb_array_uri: Union[str, tiledb.SparseArray],
     data: np.ndarray,
     x_idx: np.ndarray,
     y_idx: int,
     value_dtype: np.dtype = np.uint32,
 ):
+    """Write chunks of array to the tiledb."""
     tiledb_fp = tiledb_array_uri
     if isinstance(tiledb_array_uri, str):
         tiledb_fp = tiledb.open(tiledb_array_uri, "w")
