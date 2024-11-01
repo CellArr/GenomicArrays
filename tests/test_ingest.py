@@ -1,9 +1,7 @@
 import tempfile
 
-import anndata
 import numpy as np
 import pandas as pd
-import pytest
 import tiledb
 
 from genomicarrays import build_genomicarray
