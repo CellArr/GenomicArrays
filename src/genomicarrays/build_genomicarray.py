@@ -178,6 +178,9 @@ def build_genomicarray(
             input_intervals, feature_annotation_options.column_types
         )
 
+        if "genarr_feature_index" not in input_intervals.columns:
+            input_intervals["genarr_feature_index"] = range(0,len(input_intervals))
+
         _feature_output_uri = (
             f"{output_path}/{feature_annotation_options.tiledb_store_name}"
         )
