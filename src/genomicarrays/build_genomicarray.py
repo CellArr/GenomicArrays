@@ -252,8 +252,13 @@ def build_genomicarray(
             )
             for idx, bwpath in enumerate(files)
         ]
-        with Pool(num_threads) as p:
-            p.map(_wrapper_extract_bwinfo, all_bws_options)
+
+        if num_threads > 1:
+            with Pool(num_threads) as p:
+                p.map(_wrapper_extract_bwinfo, all_bws_options)
+        else:
+            for opt in all_bws_options:
+                _wrapper_extract_bwinfo(opt)
 
         if optimize_tiledb:
             uta.optimize_tiledb_array(_cov_uri)
