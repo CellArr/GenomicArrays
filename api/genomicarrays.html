@@ -1,0 +1,1551 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="genomicarrays" href="modules.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+        <title>genomicarrays package - GenomicArrays 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">GenomicArrays 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">GenomicArrays 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributions &amp; Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">Module Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Module Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">genomicarrays package</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/api/genomicarrays.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="genomicarrays-package">
+<h1>genomicarrays package<a class="headerlink" href="#genomicarrays-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-genomicarrays.GenomicArrayDataset">
+<span id="genomicarrays-genomicarraydataset-module"></span><h2>genomicarrays.GenomicArrayDataset module<a class="headerlink" href="#module-genomicarrays.GenomicArrayDataset" title="Link to this heading">¶</a></h2>
+<p>Query the <cite>GenomicArrayDataset</cite>.</p>
+<p>This class provides methods to access the directory containing the
+generated TileDB files usually using the
+<code class="xref py py-func docutils literal notranslate"><span class="pre">build_genomicarray()</span></code>.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">genomicarray</span> <span class="kn">import</span> <span class="n">GenomicArrayDataset</span>
+
+<span class="n">garr</span> <span class="o">=</span> <span class="n">GenomicArrayDataset</span><span class="p">(</span><span class="n">dataset_path</span><span class="o">=</span><span class="s2">&quot;/path/to/genomicarray/dir&quot;</span><span class="p">)</span>
+<span class="n">feature_indices</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span>
+<span class="n">result1</span> <span class="o">=</span> <span class="n">garr</span><span class="p">[</span><span class="n">feature_indices</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">genomicarrays.GenomicArrayDataset.</span></span><span class="sig-name descname"><span class="pre">GenomicArrayDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_tdb_uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'coverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_annotation_uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata_uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sample_metadata'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class that represent a collection of features and their associated coverage in a TileDB backed store.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__del__">
+<span class="sig-name descname"><span class="pre">__del__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.__del__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__del__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Subset a <code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset</span></code>.</p>
+<p>Mostly an alias to <a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_slice" title="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_slice"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_slice()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Sequence" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]</span>) – <p>Integer indices, a boolean filter, or (if the current object is
+named) names specifying the ranges to be extracted.</p>
+<p>Alternatively a tuple of length 1. The first entry specifies
+the rows (or cells) to retain based on their names or indices.</p>
+<p>Alternatively a tuple of length 2. The first entry specifies
+the rows (or cells) to retain, while the second entry specifies the
+columns (or features/genes) to retain, based on their names or indices.</p>
+</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.9/library/exceptions.html#ValueError" title="(in Python v3.9)"><strong>ValueError</strong></a> – If too many or too few slices provided.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice" title="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice</span></code> object
+containing the <cite>sample_metadata</cite>, <cite>feature_annotation</cite> and the matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_tdb_uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'coverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_annotation_uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata_uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sample_metadata'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize a <code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the directory containing the TileDB stores.
+Usually the <code class="docutils literal notranslate"><span class="pre">output_path</span></code> from the
+<code class="xref py py-func docutils literal notranslate"><span class="pre">build_genomicarray()</span></code>.</p></li>
+<li><p><strong>matrix_tdb_uri</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Relative path to matrix store.</p></li>
+<li><p><strong>feature_annotation_uri</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Relative path to feature annotation store.</p></li>
+<li><p><strong>sample_metadata_uri</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Relative path to sample metadata store.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__len__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__repr__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string representation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_column">
+<span class="sig-name descname"><span class="pre">get_feature_annotation_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.get_feature_annotation_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_column" title="Link to this definition">¶</a></dt>
+<dd><p>Access a column from the <code class="docutils literal notranslate"><span class="pre">feature_annotation</span></code> store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>column_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name of the column or attribute. Usually one of the column names
+from of <a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_columns" title="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_columns"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_feature_annotation_columns()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of values for this column.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_columns">
+<span class="sig-name descname"><span class="pre">get_feature_annotation_columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.get_feature_annotation_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_columns" title="Link to this definition">¶</a></dt>
+<dd><p>Get annotation column names from <code class="docutils literal notranslate"><span class="pre">feature_annotation</span></code> store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of available annotations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_index">
+<span class="sig-name descname"><span class="pre">get_feature_annotation_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.get_feature_annotation_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_index" title="Link to this definition">¶</a></dt>
+<dd><p>Get index of the <code class="docutils literal notranslate"><span class="pre">feature_annotation</span></code> store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of feature ids.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_subset">
+<span class="sig-name descname"><span class="pre">get_feature_subset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.get_feature_subset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_subset" title="Link to this definition">¶</a></dt>
+<dd><p>Slice the <code class="docutils literal notranslate"><span class="pre">feature_annotation</span></code> store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <code class="xref py py-class docutils literal notranslate"><span class="pre">QueryCondition</span></code>]</span>) – <p>A list of integer indices to subset the <code class="docutils literal notranslate"><span class="pre">feature_annotation</span></code>
+store.</p>
+<p>Alternatively, may provide a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">tiledb.QueryCondition</span></code> to query the store.</p>
+<p>Alternatively, may provide a list of strings to match with
+the index of <code class="docutils literal notranslate"><span class="pre">feature_annotation</span></code> store.</p>
+</p></li>
+<li><p><strong>columns</strong> – <p>List of specific column names to access.</p>
+<p>Defaults to None, in which case all columns are extracted.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A pandas Dataframe of the subset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_matrix_subset">
+<span class="sig-name descname"><span class="pre">get_matrix_subset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.get_matrix_subset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_matrix_subset" title="Link to this definition">¶</a></dt>
+<dd><p>Slice the <code class="docutils literal notranslate"><span class="pre">matrix</span></code> store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Sequence" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]</span>) – Any <a href="#id1"><span class="problematic" id="id2">`</span></a>slice`supported by TileDB’s array slicing.
+For more info refer to
+&lt;TileDB docs <a class="reference external" href="https://docs.tiledb.com/main/how-to/arrays/reading-arrays/basic-reading">https://docs.tiledb.com/main/how-to/arrays/reading-arrays/basic-reading</a>&gt;_.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A pandas Dataframe of the subset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_metadata_column">
+<span class="sig-name descname"><span class="pre">get_sample_metadata_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.get_sample_metadata_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_metadata_column" title="Link to this definition">¶</a></dt>
+<dd><p>Access a column from the <code class="docutils literal notranslate"><span class="pre">sample_metadata</span></code> store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>column_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name of the column or attribute. Usually one of the column names
+from of <a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_metadata_columns" title="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_metadata_columns"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_sample_metadata_columns()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of values for this column.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_metadata_columns">
+<span class="sig-name descname"><span class="pre">get_sample_metadata_columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.get_sample_metadata_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_metadata_columns" title="Link to this definition">¶</a></dt>
+<dd><p>Get column names from <code class="docutils literal notranslate"><span class="pre">sample_metadata</span></code> store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of available metadata columns.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_subset">
+<span class="sig-name descname"><span class="pre">get_sample_subset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.get_sample_subset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_subset" title="Link to this definition">¶</a></dt>
+<dd><p>Slice the <code class="docutils literal notranslate"><span class="pre">sample_metadata</span></code> store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QueryCondition</span></code>]</span>) – <p>A list of integer indices to subset the <code class="docutils literal notranslate"><span class="pre">sample_metadata</span></code>
+store.</p>
+<p>Alternatively, may also provide a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">tiledb.QueryCondition</span></code> to query the store.</p>
+</p></li>
+<li><p><strong>columns</strong> – <p>List of specific column names to access.</p>
+<p>Defaults to None, in which case all columns are extracted.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A pandas Dataframe of the subset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_slice">
+<span class="sig-name descname"><span class="pre">get_slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_subset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_subset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDataset.html#GenomicArrayDataset.get_slice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_slice" title="Link to this definition">¶</a></dt>
+<dd><p>Subset a <code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample_subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <code class="xref py py-class docutils literal notranslate"><span class="pre">QueryCondition</span></code>]</span>) – Integer indices, a boolean filter, or (if the current object is
+named) names specifying the columns (or samples) to retain.</p></li>
+<li><p><strong>feature_subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QueryCondition</span></code>]</span>) – Integer indices, a boolean filter, or (if the current object is
+named) names specifying the rows (or features/genes) to retain.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice" title="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice</span></code> object
+containing the <cite>sample_metadata</cite>, <cite>feature_annotation</cite> and the matrix for
+the given slice ranges.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDataset.GenomicArrayDataset.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.shape" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-genomicarrays.GenomicArrayDatasetSlice">
+<span id="genomicarrays-genomicarraydatasetslice-module"></span><h2>genomicarrays.GenomicArrayDatasetSlice module<a class="headerlink" href="#module-genomicarrays.GenomicArrayDatasetSlice" title="Link to this heading">¶</a></h2>
+<p>Class that represents a realized subset of the <cite>GenomicArrayDataset</cite>.</p>
+<p>This class provides a slice data class usually generated by the access
+methods from
+<code class="xref py py-func docutils literal notranslate"><span class="pre">GenomicArrayDataset()</span></code>.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">genomicarray</span> <span class="kn">import</span> <span class="n">GenomicArrayDataset</span>
+
+<span class="n">garr</span> <span class="o">=</span> <span class="n">GenomicArrayDataset</span><span class="p">(</span><span class="n">dataset_path</span><span class="o">=</span><span class="s2">&quot;/path/to/genomicarray/dir&quot;</span><span class="p">)</span>
+<span class="n">feature_indices</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">result1</span> <span class="o">=</span> <span class="n">garr</span><span class="p">[</span><span class="n">feature_indices</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">genomicarrays.GenomicArrayDatasetSlice.</span></span><span class="sig-name descname"><span class="pre">GenomicArrayDatasetSlice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_annotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDatasetSlice.html#GenomicArrayDatasetSlice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class that represents a realized subset of the <cite>CellArrDataset</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'feature_annotation':</span> <span class="pre">&lt;class</span> <span class="pre">'pandas.core.frame.DataFrame'&gt;,</span> <span class="pre">'matrix':</span> <span class="pre">typing.Any,</span> <span class="pre">'sample_metadata':</span> <span class="pre">&lt;class</span> <span class="pre">'pandas.core.frame.DataFrame'&gt;}</span></em><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__dataclass_fields__">
+<span class="sig-name descname"><span class="pre">__dataclass_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'feature_annotation':</span> <span class="pre">Field(name='feature_annotation',type=&lt;class</span> <span class="pre">'pandas.core.frame.DataFrame'&gt;,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'matrix':</span> <span class="pre">Field(name='matrix',type=typing.Any,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'sample_metadata':</span> <span class="pre">Field(name='sample_metadata',type=&lt;class</span> <span class="pre">'pandas.core.frame.DataFrame'&gt;,default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD)}</span></em><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__dataclass_fields__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__dataclass_params__">
+<span class="sig-name descname"><span class="pre">__dataclass_params__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">_DataclassParams(init=True,repr=True,eq=True,order=False,unsafe_hash=False,frozen=False)</span></em><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__dataclass_params__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_annotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDatasetSlice.html#GenomicArrayDatasetSlice.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__len__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDatasetSlice.html#GenomicArrayDatasetSlice.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__repr__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string representation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.feature_annotation">
+<span class="sig-name descname"><span class="pre">feature_annotation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></em><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.feature_annotation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.matrix">
+<span class="sig-name descname"><span class="pre">matrix</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></em><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.matrix" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.sample_metadata">
+<span class="sig-name descname"><span class="pre">sample_metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></em><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.sample_metadata" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.shape" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.to_anndata">
+<span class="sig-name descname"><span class="pre">to_anndata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDatasetSlice.html#GenomicArrayDatasetSlice.to_anndata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.to_anndata" title="Link to this definition">¶</a></dt>
+<dd><p>Convert the realized slice to <code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.to_rangedsummarizedexperiment">
+<span class="sig-name descname"><span class="pre">to_rangedsummarizedexperiment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/GenomicArrayDatasetSlice.html#GenomicArrayDatasetSlice.to_rangedsummarizedexperiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.to_rangedsummarizedexperiment" title="Link to this definition">¶</a></dt>
+<dd><p>Convert the realized slice to
+<code class="xref py py-class docutils literal notranslate"><span class="pre">RangedSummarizedExperiment</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-genomicarrays.build_genomicarray">
+<span id="genomicarrays-build-genomicarray-module"></span><h2>genomicarrays.build_genomicarray module<a class="headerlink" href="#module-genomicarrays.build_genomicarray" title="Link to this heading">¶</a></h2>
+<p>Build the <cite>GenomicArrayDatset</cite>.</p>
+<p>This modules provides tools for converting genomic data from BigWig format to TileDB.
+It supports parallel processing for handling large collection of genomic datasets.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyBigWig</span> <span class="k">as</span> <span class="nn">bw</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">from</span> <span class="nn">genomicarrays</span> <span class="kn">import</span> <span class="n">build_genomicarray</span><span class="p">,</span> <span class="n">MatrixOptions</span>
+
+<span class="c1"># Create a temporary directory</span>
+<span class="n">tempdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+
+<span class="c1"># Read BigWig objects</span>
+<span class="n">bw1</span> <span class="o">=</span> <span class="n">bw</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;path/to/object1.bw&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="c1"># or just provide the path</span>
+<span class="n">bw2</span> <span class="o">=</span> <span class="s2">&quot;path/to/object2.bw&quot;</span>
+
+<span class="c1"># Build GenomicArray</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">build_genomicarray</span><span class="p">(</span>
+    <span class="n">output_path</span><span class="o">=</span><span class="n">tempdir</span><span class="p">,</span>
+    <span class="n">files</span><span class="o">=</span><span class="p">[</span><span class="n">bw1</span><span class="p">,</span> <span class="n">bw2</span><span class="p">],</span>
+    <span class="n">matrix_options</span><span class="o">=</span><span class="n">MatrixOptions</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.build_genomicarray.build_genomicarray">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.build_genomicarray.</span></span><span class="sig-name descname"><span class="pre">build_genomicarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome='hg38'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata_options=SampleMetadataOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='sample_metadata'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_options=MatrixOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_attr_name='data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='coverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression='zstd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_level=4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_annotation_options=FeatureAnnotationOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types={'seqnames':</span> <span class="pre">'ascii'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'starts':</span> <span class="pre">'int'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'ends':</span> <span class="pre">'int'}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=&lt;function</span> <span class="pre">nanmean&gt;)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize_tiledb=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads=1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_genomicarray.html#build_genomicarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_genomicarray.build_genomicarray" title="Link to this definition">¶</a></dt>
+<dd><p>Generate the <cite>GenomicArrayDatset</cite>.</p>
+<p>All files are expected to be consistent and any modifications
+to make them consistent is outside the scope of this function
+and package.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></span>) – List of file paths to <cite>BigWig</cite> files.</p></li>
+<li><p><strong>output_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to where the output TileDB files should be stored.</p></li>
+<li><p><strong>features</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>]</span>) – <p>A <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> containing the input genomic
+intervals..</p>
+<p>Alternatively, may provide path to the file containing a
+list of intervals. In this case,
+the first row is expected to contain the column names,
+“seqnames”, “starts” and “ends”.</p>
+</p></li>
+<li><p><strong>genome</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>]</span>) – <p>A string specifying the genome to automatically download the
+chromosome sizes from ucsc.</p>
+<p>Alternatively, may provide a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
+containing columns ‘seqnames’ and ‘lengths’.</p>
+<p>Note: This parameter is currently not used. Ideally this will
+be used to truncate the regions.</p>
+</p></li>
+<li><p><strong>sample_metadata</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]</span>) – <p>A <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> containing the sample
+metadata for each file in <code class="docutils literal notranslate"><span class="pre">files</span></code>. Hences the number of rows
+in the dataframe must match the number of <code class="docutils literal notranslate"><span class="pre">files</span></code>.</p>
+<p>Alternatively, may provide path to the file containing a
+concatenated sample metadata across all BigWig files. In this case,
+the first row is expected to contain the column names.</p>
+<p>Additionally, the order of rows is expected to be in the same
+order as the input list of <code class="docutils literal notranslate"><span class="pre">files</span></code>.</p>
+<p>Defaults to <cite>None</cite>, in which case, we create a simple sample
+metadata dataframe containing the list of datasets, aka
+each BigWig files. Each dataset is named as <code class="docutils literal notranslate"><span class="pre">sample_{i}</span></code>
+where <cite>i</cite> refers to the index position of the object in <code class="docutils literal notranslate"><span class="pre">files</span></code>.</p>
+</p></li>
+<li><p><strong>sample_metadata_options</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions" title="genomicarrays.build_options.SampleMetadataOptions"><code class="xref py py-class docutils literal notranslate"><span class="pre">SampleMetadataOptions</span></code></a></span>) – Optional parameters when generating <code class="docutils literal notranslate"><span class="pre">sample_metadata</span></code> store.</p></li>
+<li><p><strong>matrix_options</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions" title="genomicarrays.build_options.MatrixOptions"><code class="xref py py-class docutils literal notranslate"><span class="pre">MatrixOptions</span></code></a></span>) – Optional parameters when generating <code class="docutils literal notranslate"><span class="pre">matrix</span></code> store.</p></li>
+<li><p><strong>feature_annotation_options</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions" title="genomicarrays.build_options.FeatureAnnotationOptions"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeatureAnnotationOptions</span></code></a></span>) – Optional parameters when generating <code class="docutils literal notranslate"><span class="pre">feature_annotation</span></code> store.</p></li>
+<li><p><strong>optimize_tiledb</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to run TileDB’s vaccum and consolidation (may take long).</p></li>
+<li><p><strong>num_threads</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of threads.
+Defaults to 1.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-genomicarrays.build_options">
+<span id="genomicarrays-build-options-module"></span><h2>genomicarrays.build_options module<a class="headerlink" href="#module-genomicarrays.build_options" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">genomicarrays.build_options.</span></span><span class="sig-name descname"><span class="pre">FeatureAnnotationOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=&lt;function</span> <span class="pre">nanmean&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_options.html#FeatureAnnotationOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Optional arguments for the <code class="docutils literal notranslate"><span class="pre">feature</span></code> store for <a class="reference internal" href="#genomicarrays.build_genomicarray.build_genomicarray" title="genomicarrays.build_genomicarray.build_genomicarray"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_genomicarray()</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.skip">
+<span class="sig-name descname"><span class="pre">skip</span></span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.skip" title="Link to this definition">¶</a></dt>
+<dd><p>Whether to skip generating sample TileDB.
+Defaults to False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.dtype">
+<span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.dtype" title="Link to this definition">¶</a></dt>
+<dd><p>NumPy dtype for the sample dimension.
+Defaults to np.uint32.</p>
+<p>Note: make sure the number of features fit
+within the integer limits of chosen dtype.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.tiledb_store_name">
+<span class="sig-name descname"><span class="pre">tiledb_store_name</span></span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.tiledb_store_name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the TileDB file.
+Defaults to “feature_annotation”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.column_types">
+<span class="sig-name descname"><span class="pre">column_types</span></span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.column_types" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary containing column names as keys
+and the value representing the type to in
+the TileDB.</p>
+<p>If <cite>None</cite>, all columns are cast as ‘ascii’.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.aggregate_function">
+<span class="sig-name descname"><span class="pre">aggregate_function</span></span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.aggregate_function" title="Link to this definition">¶</a></dt>
+<dd><p>A callable to summarize the values in a given
+interval. Defaults to NumPy’s <cite>nanmean</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'aggregate_function':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">callable&gt;,</span> <span class="pre">'column_types':</span> <span class="pre">typing.Dict[str,</span> <span class="pre">numpy.dtype],</span> <span class="pre">'dtype':</span> <span class="pre">&lt;class</span> <span class="pre">'numpy.dtype'&gt;,</span> <span class="pre">'skip':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;,</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__dataclass_fields__">
+<span class="sig-name descname"><span class="pre">__dataclass_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'aggregate_function':</span> <span class="pre">Field(name='aggregate_function',type=&lt;built-in</span> <span class="pre">function</span> <span class="pre">callable&gt;,default=&lt;function</span> <span class="pre">nanmean&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'column_types':</span> <span class="pre">Field(name='column_types',type=typing.Dict[str,</span> <span class="pre">numpy.dtype],default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'dtype':</span> <span class="pre">Field(name='dtype',type=&lt;class</span> <span class="pre">'numpy.dtype'&gt;,default=&lt;class</span> <span class="pre">'numpy.uint32'&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'skip':</span> <span class="pre">Field(name='skip',type=&lt;class</span> <span class="pre">'bool'&gt;,default=False,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">Field(name='tiledb_store_name',type=&lt;class</span> <span class="pre">'str'&gt;,default='feature_annotation',default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD)}</span></em><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__dataclass_fields__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__dataclass_params__">
+<span class="sig-name descname"><span class="pre">__dataclass_params__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">_DataclassParams(init=True,repr=True,eq=True,order=False,unsafe_hash=False,frozen=False)</span></em><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__dataclass_params__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=&lt;function</span> <span class="pre">nanmean&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__post_init__">
+<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_options.html#FeatureAnnotationOptions.__post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__post_init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">aggregate_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims=&lt;no</span> <span class="pre">value&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where=&lt;no</span> <span class="pre">value&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the arithmetic mean along the specified axis, ignoring NaNs.</p>
+<p>Returns the average of the array elements.  The average is taken over
+the flattened array by default, otherwise over the specified axis.
+<cite>float64</cite> intermediate and return values are used for integer inputs.</p>
+<p>For all-NaN slices, NaN is returned and a <cite>RuntimeWarning</cite> is raised.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.8.0.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>array_like</em>) – Array containing numbers whose mean is desired. If <cite>a</cite> is not an
+array, a conversion is attempted.</p></li>
+<li><p><strong>axis</strong> (<em>{int</em><em>, </em><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>None}</em><em>, </em><em>optional</em>) – Axis or axes along which the means are computed. The default is to compute
+the mean of the flattened array.</p></li>
+<li><p><strong>dtype</strong> (<em>data-type</em><em>, </em><em>optional</em>) – Type to use in computing the mean.  For integer inputs, the default
+is <cite>float64</cite>; for inexact inputs, it is the same as the input
+dtype.</p></li>
+<li><p><strong>out</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – Alternate output array in which to place the result.  The default
+is <code class="docutils literal notranslate"><span class="pre">None</span></code>; if provided, it must have the same shape as the
+expected output, but the type will be cast if necessary. See
+<a class="reference external" href="https://numpy.org/doc/stable/user/basics.ufuncs.html#ufuncs-output-type" title="(in NumPy v2.1)"><span>Output type determination</span></a> for more details.</p></li>
+<li><p><strong>keepdims</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – <p>If this is set to True, the axes which are reduced are left
+in the result as dimensions with size one. With this option,
+the result will broadcast correctly against the original <cite>a</cite>.</p>
+<p>If the value is anything but the default, then
+<cite>keepdims</cite> will be passed through to the <cite>mean</cite> or <cite>sum</cite> methods
+of sub-classes of <cite>ndarray</cite>.  If the sub-classes methods
+does not implement <cite>keepdims</cite> any exceptions will be raised.</p>
+</p></li>
+<li><p><strong>where</strong> (<em>array_like</em><em> of </em><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – <p>Elements to include in the mean. See <cite>~numpy.ufunc.reduce</cite> for details.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.22.0.</span></p>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>m</strong> – If <cite>out=None</cite>, returns a new array containing the mean values,
+otherwise a reference to the output array is returned. Nan is
+returned for slices that contain only NaNs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray, see dtype parameter above</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">average</span></code></dt><dd><p>Weighted average</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code></dt><dd><p>Arithmetic mean taken while not ignoring NaNs</p>
+</dd>
+</dl>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">nanvar</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The arithmetic mean is the sum of the non-NaN elements along the axis
+divided by the number of non-NaN elements.</p>
+<p>Note that for floating-point input, the mean is computed using the same
+precision the input has.  Depending on the input data, this can cause
+the results to be inaccurate, especially for <cite>float32</cite>.  Specifying a
+higher-precision accumulator using the <cite>dtype</cite> keyword can alleviate
+this issue.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">2.6666666666666665</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">array([2.,  4.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([1.,  3.5]) # may vary</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">column_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">,</span> <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">uint32</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">skip</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">tiledb_store_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'feature_annotation'</span></em><a class="headerlink" href="#id6" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">genomicarrays.build_options.</span></span><span class="sig-name descname"><span class="pre">MatrixOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_attr_name='data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='coverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression='zstd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_level=4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_options.html#MatrixOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Optional arguments for the <code class="docutils literal notranslate"><span class="pre">matrix</span></code> store for <a class="reference internal" href="#genomicarrays.build_genomicarray.build_genomicarray" title="genomicarrays.build_genomicarray.build_genomicarray"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_genomicarray()</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.matrix_attr_name">
+<span class="sig-name descname"><span class="pre">matrix_attr_name</span></span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.matrix_attr_name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the matrix to be stored in the TileDB file.
+Defaults to “data”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.skip">
+<span class="sig-name descname"><span class="pre">skip</span></span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.skip" title="Link to this definition">¶</a></dt>
+<dd><p>Whether to skip generating matrix TileDB.
+Defaults to False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.dtype">
+<span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.dtype" title="Link to this definition">¶</a></dt>
+<dd><p>NumPy dtype for the values in the matrix.
+Defaults to np.uint16.</p>
+<p>Note: make sure the matrix values fit
+within the range limits of chosen-dtype.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.tiledb_store_name">
+<span class="sig-name descname"><span class="pre">tiledb_store_name</span></span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.tiledb_store_name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the TileDB file.
+Defaults to <cite>coverage</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.chunk_size">
+<span class="sig-name descname"><span class="pre">chunk_size</span></span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.chunk_size" title="Link to this definition">¶</a></dt>
+<dd><p>Size of chunks for parallel processing.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.compression">
+<span class="sig-name descname"><span class="pre">compression</span></span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.compression" title="Link to this definition">¶</a></dt>
+<dd><p>TileDB compression filter (None, ‘gzip’, ‘zstd’, ‘lz4’).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.compression_level">
+<span class="sig-name descname"><span class="pre">compression_level</span></span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.compression_level" title="Link to this definition">¶</a></dt>
+<dd><p>Compression level (1-9).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'chunk_size':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">'compression':</span> <span class="pre">typing.Literal['zstd',</span> <span class="pre">'gzip',</span> <span class="pre">'lz4'],</span> <span class="pre">'compression_level':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">'dtype':</span> <span class="pre">&lt;class</span> <span class="pre">'numpy.dtype'&gt;,</span> <span class="pre">'matrix_attr_name':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;,</span> <span class="pre">'skip':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;,</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.__dataclass_fields__">
+<span class="sig-name descname"><span class="pre">__dataclass_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'chunk_size':</span> <span class="pre">Field(name='chunk_size',type=&lt;class</span> <span class="pre">'int'&gt;,default=1000,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'compression':</span> <span class="pre">Field(name='compression',type=typing.Literal['zstd',</span> <span class="pre">'gzip',</span> <span class="pre">'lz4'],default='zstd',default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'compression_level':</span> <span class="pre">Field(name='compression_level',type=&lt;class</span> <span class="pre">'int'&gt;,default=4,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'dtype':</span> <span class="pre">Field(name='dtype',type=&lt;class</span> <span class="pre">'numpy.dtype'&gt;,default=&lt;class</span> <span class="pre">'numpy.float32'&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'matrix_attr_name':</span> <span class="pre">Field(name='matrix_attr_name',type=&lt;class</span> <span class="pre">'str'&gt;,default='data',default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'skip':</span> <span class="pre">Field(name='skip',type=&lt;class</span> <span class="pre">'bool'&gt;,default=False,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">Field(name='tiledb_store_name',type=&lt;class</span> <span class="pre">'str'&gt;,default='coverage',default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD)}</span></em><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.__dataclass_fields__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.__dataclass_params__">
+<span class="sig-name descname"><span class="pre">__dataclass_params__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">_DataclassParams(init=True,repr=True,eq=True,order=False,unsafe_hash=False,frozen=False)</span></em><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.__dataclass_params__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_attr_name='data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='coverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression='zstd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_level=4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.__post_init__">
+<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_options.html#MatrixOptions.__post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.__post_init__" title="Link to this definition">¶</a></dt>
+<dd><p>Validate configuration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.MatrixOptions.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.MatrixOptions.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">chunk_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000</span></em><a class="headerlink" href="#id7" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">compression</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Literal" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a><span class="pre">[</span><code class="docutils literal notranslate"><span class="pre">'zstd'</span></code><span class="pre">,</span> <code class="docutils literal notranslate"><span class="pre">'gzip'</span></code><span class="pre">,</span> <code class="docutils literal notranslate"><span class="pre">'lz4'</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'zstd'</span></em><a class="headerlink" href="#id8" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">compression_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#id9" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#id10" title="Link to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">float32</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">matrix_attr_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'data'</span></em><a class="headerlink" href="#id11" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">skip</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id12" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">tiledb_store_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coverage'</span></em><a class="headerlink" href="#id13" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">genomicarrays.build_options.</span></span><span class="sig-name descname"><span class="pre">SampleMetadataOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='sample_metadata'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_options.html#SampleMetadataOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Optional arguments for the <code class="docutils literal notranslate"><span class="pre">sample</span></code> store for <a class="reference internal" href="#genomicarrays.build_genomicarray.build_genomicarray" title="genomicarrays.build_genomicarray.build_genomicarray"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_genomicarray()</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.skip">
+<span class="sig-name descname"><span class="pre">skip</span></span><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.skip" title="Link to this definition">¶</a></dt>
+<dd><p>Whether to skip generating sample TileDB.
+Defaults to False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.dtype">
+<span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.dtype" title="Link to this definition">¶</a></dt>
+<dd><p>NumPy dtype for the sample dimension.
+Defaults to np.uint32.</p>
+<p>Note: make sure the number of samples fit
+within the integer limits of chosen dtype.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.tiledb_store_name">
+<span class="sig-name descname"><span class="pre">tiledb_store_name</span></span><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.tiledb_store_name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the TileDB file.
+Defaults to “sample_metadata”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.column_types">
+<span class="sig-name descname"><span class="pre">column_types</span></span><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.column_types" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary containing column names as keys
+and the value representing the type to in
+the TileDB.</p>
+<p>If <cite>None</cite>, all columns are cast as ‘ascii’.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'column_types':</span> <span class="pre">typing.Dict[str,</span> <span class="pre">numpy.dtype],</span> <span class="pre">'dtype':</span> <span class="pre">&lt;class</span> <span class="pre">'numpy.dtype'&gt;,</span> <span class="pre">'skip':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;,</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.__dataclass_fields__">
+<span class="sig-name descname"><span class="pre">__dataclass_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'column_types':</span> <span class="pre">Field(name='column_types',type=typing.Dict[str,</span> <span class="pre">numpy.dtype],default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'dtype':</span> <span class="pre">Field(name='dtype',type=&lt;class</span> <span class="pre">'numpy.dtype'&gt;,default=&lt;class</span> <span class="pre">'numpy.uint32'&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'skip':</span> <span class="pre">Field(name='skip',type=&lt;class</span> <span class="pre">'bool'&gt;,default=False,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">Field(name='tiledb_store_name',type=&lt;class</span> <span class="pre">'str'&gt;,default='sample_metadata',default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD)}</span></em><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.__dataclass_fields__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.__dataclass_params__">
+<span class="sig-name descname"><span class="pre">__dataclass_params__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">_DataclassParams(init=True,repr=True,eq=True,order=False,unsafe_hash=False,frozen=False)</span></em><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.__dataclass_params__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='sample_metadata'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="genomicarrays.build_options.SampleMetadataOptions.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.SampleMetadataOptions.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">column_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">,</span> <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id14" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#id15" title="Link to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">uint32</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">skip</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id16" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">tiledb_store_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sample_metadata'</span></em><a class="headerlink" href="#id17" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-genomicarrays.buildutils_tiledb_array">
+<span id="genomicarrays-buildutils-tiledb-array-module"></span><h2>genomicarrays.buildutils_tiledb_array module<a class="headerlink" href="#module-genomicarrays.buildutils_tiledb_array" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.buildutils_tiledb_array.create_tiledb_array">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.buildutils_tiledb_array.</span></span><span class="sig-name descname"><span class="pre">create_tiledb_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiledb_uri_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_dim_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_dim_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_dim_name='feature_index'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_dim_name='sample_index'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_attr_name='data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_dim_dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_dim_dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_dim_dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sparse=True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/buildutils_tiledb_array.html#create_tiledb_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.buildutils_tiledb_array.create_tiledb_array" title="Link to this definition">¶</a></dt>
+<dd><p>Create a TileDB file with the provided attributes to persistent storage.</p>
+<p>This will materialize the array directory and all
+related schema files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tiledb_uri_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to create the array TileDB file.</p></li>
+<li><p><strong>x_dim_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Number of entries along the x/fastest-changing dimension.
+e.g. Number of cells.
+Defaults to None, in which case, the max integer value of
+<code class="docutils literal notranslate"><span class="pre">x_dim_dtype</span></code> is used.</p></li>
+<li><p><strong>y_dim_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Number of entries along the y dimension.
+e.g. Number of genes.
+Defaults to None, in which case, the max integer value of
+<code class="docutils literal notranslate"><span class="pre">y_dim_dtype</span></code> is used.</p></li>
+<li><p><strong>x_dim_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name for the x-dimension.
+Defaults to “feature_index”.</p></li>
+<li><p><strong>y_dim_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name for the y-dimension.
+Defaults to “sample_index”.</p></li>
+<li><p><strong>matrix_attr_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name for the attribute in the array.
+Defaults to “data”.</p></li>
+<li><p><strong>x_dim_dtype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a></span>) – NumPy dtype for the x-dimension.
+Defaults to np.uint32.</p></li>
+<li><p><strong>y_dim_dtype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a></span>) – NumPy dtype for the y-dimension.
+Defaults to np.uint32.</p></li>
+<li><p><strong>matrix_dim_dtype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a></span>) – NumPy dtype for the values in the matrix.
+Defaults to np.uint32.</p></li>
+<li><p><strong>is_sparse</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether the matrix is sparse.
+Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.buildutils_tiledb_array.optimize_tiledb_array">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.buildutils_tiledb_array.</span></span><span class="sig-name descname"><span class="pre">optimize_tiledb_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiledb_array_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/buildutils_tiledb_array.html#optimize_tiledb_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.buildutils_tiledb_array.optimize_tiledb_array" title="Link to this definition">¶</a></dt>
+<dd><p>Consolidate TileDB fragments.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.buildutils_tiledb_array.write_array_chunks_to_tiledb">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.buildutils_tiledb_array.</span></span><span class="sig-name descname"><span class="pre">write_array_chunks_to_tiledb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiledb_array_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/buildutils_tiledb_array.html#write_array_chunks_to_tiledb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.buildutils_tiledb_array.write_array_chunks_to_tiledb" title="Link to this definition">¶</a></dt>
+<dd><p>Write chunks of array to the tiledb.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.buildutils_tiledb_array.write_frame_intervals_to_tiledb">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.buildutils_tiledb_array.</span></span><span class="sig-name descname"><span class="pre">write_frame_intervals_to_tiledb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiledb_array_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/buildutils_tiledb_array.html#write_frame_intervals_to_tiledb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.buildutils_tiledb_array.write_frame_intervals_to_tiledb" title="Link to this definition">¶</a></dt>
+<dd><p>Append and save array data to TileDB. Expect data for one full sample (column).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tiledb_array_uri</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SparseArray</span></code>]</span>) – TileDB array object or path to a TileDB object.</p></li>
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span>) – numpy array to write to TileDB, must contain
+columns, “start”, “end” and “value”.</p></li>
+<li><p><strong>value_dtype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a></span>) – NumPy dtype to reformat the matrix values.
+Defaults to <code class="docutils literal notranslate"><span class="pre">float32</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-genomicarrays.queryutils_tiledb_frame">
+<span id="genomicarrays-queryutils-tiledb-frame-module"></span><h2>genomicarrays.queryutils_tiledb_frame module<a class="headerlink" href="#module-genomicarrays.queryutils_tiledb_frame" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.queryutils_tiledb_frame.get_a_column">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.queryutils_tiledb_frame.</span></span><span class="sig-name descname"><span class="pre">get_a_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiledb_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/queryutils_tiledb_frame.html#get_a_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.queryutils_tiledb_frame.get_a_column" title="Link to this definition">¶</a></dt>
+<dd><p>Access column(s) from the TileDB object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tiledb_obj</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></span>) – A TileDB object.</p></li>
+<li><p><strong>column_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span>) – Name(s) of the column to access.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List containing the column values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.queryutils_tiledb_frame.get_index">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.queryutils_tiledb_frame.</span></span><span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiledb_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/queryutils_tiledb_frame.html#get_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.queryutils_tiledb_frame.get_index" title="Link to this definition">¶</a></dt>
+<dd><p>Get the index of the TileDB object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tiledb_obj</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></span>) – A TileDB object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list containing the index values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.queryutils_tiledb_frame.get_schema_names_frame">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.queryutils_tiledb_frame.</span></span><span class="sig-name descname"><span class="pre">get_schema_names_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiledb_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/queryutils_tiledb_frame.html#get_schema_names_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.queryutils_tiledb_frame.get_schema_names_frame" title="Link to this definition">¶</a></dt>
+<dd><p>Get Attributes from a TileDB object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tiledb_obj</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></span>) – A TileDB object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of schema attributes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.queryutils_tiledb_frame.subset_array">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.queryutils_tiledb_frame.</span></span><span class="sig-name descname"><span class="pre">subset_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiledb_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_subset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_subset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/queryutils_tiledb_frame.html#subset_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.queryutils_tiledb_frame.subset_array" title="Link to this definition">¶</a></dt>
+<dd><p>Subset a tiledb storing array data.</p>
+<p>Uses multi_index to slice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tiledb_obj</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></span>) – A TileDB object</p></li>
+<li><p><strong>row_subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]</span>) – Subset along the row axis.</p></li>
+<li><p><strong>column_subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]</span>) – Subset along the column axis.</p></li>
+<li><p><strong>shape</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a></span>) – Shape of the entire matrix.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dense array containing coverage.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.queryutils_tiledb_frame.subset_frame">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.queryutils_tiledb_frame.</span></span><span class="sig-name descname"><span class="pre">subset_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiledb_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/queryutils_tiledb_frame.html#subset_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.queryutils_tiledb_frame.subset_frame" title="Link to this definition">¶</a></dt>
+<dd><p>Subset a TileDB object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tiledb_obj</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></span>) – TileDB object to subset.</p></li>
+<li><p><strong>subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QueryCondition</span></code>]</span>) – <p>A <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a> to subset.</p>
+<p>Alternatively, may provide a <code class="xref py py-class docutils literal notranslate"><span class="pre">QueryCondition</span></code>
+to subset the object.</p>
+</p></li>
+<li><p><strong>columns</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></span>) – List specifying the atrributes from the schema to extract.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A sliced <cite>DataFrame</cite> or a <cite>matrix</cite> with the subset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-genomicarrays.utils_bw">
+<span id="genomicarrays-utils-bw-module"></span><h2>genomicarrays.utils_bw module<a class="headerlink" href="#module-genomicarrays.utils_bw" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.utils_bw.extract_bw_intervals_as_vec">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.utils_bw.</span></span><span class="sig-name descname"><span class="pre">extract_bw_intervals_as_vec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_func=&lt;function</span> <span class="pre">nanmean&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/utils_bw.html#extract_bw_intervals_as_vec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.utils_bw.extract_bw_intervals_as_vec" title="Link to this definition">¶</a></dt>
+<dd><p>Extract data from BigWig for a given region and apply the aggregate function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bw_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the BigWig file.</p></li>
+<li><p><strong>intervals</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – List of intervals to extract.</p></li>
+<li><p><strong>agg_func</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">callable</span></code></span>) – Aggregate function to apply.
+Defaults to np.nanmean.</p></li>
+<li><p><strong>val_dtype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a></span>) – Dtype of the resulting array.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A vector with length as the number of intervals,
+a value if the file contains the data for the corresponding
+region or <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> if the region is not measured.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.utils_bw.extract_bw_values">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.utils_bw.</span></span><span class="sig-name descname"><span class="pre">extract_bw_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chrom</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/utils_bw.html#extract_bw_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.utils_bw.extract_bw_values" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-genomicarrays">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-genomicarrays" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="modules.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">genomicarrays</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Jayaram Kancherla
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">genomicarrays package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-genomicarrays.GenomicArrayDataset">genomicarrays.GenomicArrayDataset module</a><ul>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset</span></code></a><ul>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__del__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.__del__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__getitem__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__init__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__len__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.__repr__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_column"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.get_feature_annotation_column()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_columns"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.get_feature_annotation_columns()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_annotation_index"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.get_feature_annotation_index()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_subset"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.get_feature_subset()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_matrix_subset"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.get_matrix_subset()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_metadata_column"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.get_sample_metadata_column()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_metadata_columns"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.get_sample_metadata_columns()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_subset"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.get_sample_subset()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_slice"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.get_slice()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.shape"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset.shape</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-genomicarrays.GenomicArrayDatasetSlice">genomicarrays.GenomicArrayDatasetSlice module</a><ul>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice</span></code></a><ul>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__annotations__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__dataclass_fields__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.__dataclass_fields__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__dataclass_params__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.__dataclass_params__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__eq__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__hash__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__init__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__len__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.__repr__"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.feature_annotation"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.feature_annotation</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.matrix"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.matrix</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.sample_metadata"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.sample_metadata</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.shape"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.shape</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.to_anndata"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.to_anndata()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.GenomicArrayDatasetSlice.GenomicArrayDatasetSlice.to_rangedsummarizedexperiment"><code class="docutils literal notranslate"><span class="pre">GenomicArrayDatasetSlice.to_rangedsummarizedexperiment()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-genomicarrays.build_genomicarray">genomicarrays.build_genomicarray module</a><ul>
+<li><a class="reference internal" href="#genomicarrays.build_genomicarray.build_genomicarray"><code class="docutils literal notranslate"><span class="pre">build_genomicarray()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-genomicarrays.build_options">genomicarrays.build_options module</a><ul>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions</span></code></a><ul>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.skip"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.skip</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.dtype"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.dtype</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.tiledb_store_name"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.tiledb_store_name</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.column_types"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.column_types</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.aggregate_function"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.aggregate_function</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__annotations__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__dataclass_fields__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__dataclass_fields__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__dataclass_params__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__dataclass_params__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__eq__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__hash__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__init__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__post_init__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__post_init__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__repr__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.aggregate_function()</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.column_types</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.dtype</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.skip</span></code></a></li>
+<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.tiledb_store_name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions"><code class="docutils literal notranslate"><span class="pre">MatrixOptions</span></code></a><ul>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.matrix_attr_name"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.matrix_attr_name</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.skip"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.skip</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.dtype"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.dtype</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.tiledb_store_name"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.tiledb_store_name</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.chunk_size"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.chunk_size</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.compression"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.compression</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.compression_level"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.compression_level</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.__annotations__"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.__dataclass_fields__"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.__dataclass_fields__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.__dataclass_params__"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.__dataclass_params__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.__eq__"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.__hash__"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.__init__"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.__post_init__"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.__post_init__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.MatrixOptions.__repr__"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.chunk_size</span></code></a></li>
+<li><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.compression</span></code></a></li>
+<li><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.compression_level</span></code></a></li>
+<li><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.dtype</span></code></a></li>
+<li><a class="reference internal" href="#id11"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.matrix_attr_name</span></code></a></li>
+<li><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.skip</span></code></a></li>
+<li><a class="reference internal" href="#id13"><code class="docutils literal notranslate"><span class="pre">MatrixOptions.tiledb_store_name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions</span></code></a><ul>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.skip"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.skip</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.dtype"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.dtype</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.tiledb_store_name"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.tiledb_store_name</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.column_types"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.column_types</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.__annotations__"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.__dataclass_fields__"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.__dataclass_fields__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.__dataclass_params__"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.__dataclass_params__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.__eq__"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.__hash__"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.__init__"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.build_options.SampleMetadataOptions.__repr__"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#id14"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.column_types</span></code></a></li>
+<li><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.dtype</span></code></a></li>
+<li><a class="reference internal" href="#id16"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.skip</span></code></a></li>
+<li><a class="reference internal" href="#id17"><code class="docutils literal notranslate"><span class="pre">SampleMetadataOptions.tiledb_store_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-genomicarrays.buildutils_tiledb_array">genomicarrays.buildutils_tiledb_array module</a><ul>
+<li><a class="reference internal" href="#genomicarrays.buildutils_tiledb_array.create_tiledb_array"><code class="docutils literal notranslate"><span class="pre">create_tiledb_array()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.buildutils_tiledb_array.optimize_tiledb_array"><code class="docutils literal notranslate"><span class="pre">optimize_tiledb_array()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.buildutils_tiledb_array.write_array_chunks_to_tiledb"><code class="docutils literal notranslate"><span class="pre">write_array_chunks_to_tiledb()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.buildutils_tiledb_array.write_frame_intervals_to_tiledb"><code class="docutils literal notranslate"><span class="pre">write_frame_intervals_to_tiledb()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-genomicarrays.queryutils_tiledb_frame">genomicarrays.queryutils_tiledb_frame module</a><ul>
+<li><a class="reference internal" href="#genomicarrays.queryutils_tiledb_frame.get_a_column"><code class="docutils literal notranslate"><span class="pre">get_a_column()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.queryutils_tiledb_frame.get_index"><code class="docutils literal notranslate"><span class="pre">get_index()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.queryutils_tiledb_frame.get_schema_names_frame"><code class="docutils literal notranslate"><span class="pre">get_schema_names_frame()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.queryutils_tiledb_frame.subset_array"><code class="docutils literal notranslate"><span class="pre">subset_array()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.queryutils_tiledb_frame.subset_frame"><code class="docutils literal notranslate"><span class="pre">subset_frame()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-genomicarrays.utils_bw">genomicarrays.utils_bw module</a><ul>
+<li><a class="reference internal" href="#genomicarrays.utils_bw.extract_bw_intervals_as_vec"><code class="docutils literal notranslate"><span class="pre">extract_bw_intervals_as_vec()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.utils_bw.extract_bw_values"><code class="docutils literal notranslate"><span class="pre">extract_bw_values()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-genomicarrays">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    </body>
+</html>

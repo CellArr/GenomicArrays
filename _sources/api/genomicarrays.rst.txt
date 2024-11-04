@@ -1,0 +1,69 @@
+genomicarrays package
+=====================
+
+Submodules
+----------
+
+genomicarrays.GenomicArrayDataset module
+----------------------------------------
+
+.. automodule:: genomicarrays.GenomicArrayDataset
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genomicarrays.GenomicArrayDatasetSlice module
+---------------------------------------------
+
+.. automodule:: genomicarrays.GenomicArrayDatasetSlice
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genomicarrays.build\_genomicarray module
+----------------------------------------
+
+.. automodule:: genomicarrays.build_genomicarray
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genomicarrays.build\_options module
+-----------------------------------
+
+.. automodule:: genomicarrays.build_options
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genomicarrays.buildutils\_tiledb\_array module
+----------------------------------------------
+
+.. automodule:: genomicarrays.buildutils_tiledb_array
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genomicarrays.queryutils\_tiledb\_frame module
+----------------------------------------------
+
+.. automodule:: genomicarrays.queryutils_tiledb_frame
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+genomicarrays.utils\_bw module
+------------------------------
+
+.. automodule:: genomicarrays.utils_bw
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: genomicarrays
+   :members:
+   :undoc-members:
+   :show-inheritance:
