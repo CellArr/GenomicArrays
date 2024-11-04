@@ -32,8 +32,7 @@ __license__ = "MIT"
 
 
 class GenomicArrayDataset:
-    """A class that represent a collection of features and
-    their associated coverage in a TileDB backed store."""
+    """A class that represent a collection of features and their associated coverage in a TileDB backed store."""
 
     def __init__(
         self,
@@ -66,8 +65,12 @@ class GenomicArrayDataset:
         self._dataset_path = dataset_path
         # TODO: Maybe switch to on-demand loading of these objects
         self._matrix_tdb_tdb = tiledb.open(f"{dataset_path}/{matrix_tdb_uri}", "r")
-        self._feature_annotation_tdb = tiledb.open(f"{dataset_path}/{feature_annotation_uri}", "r")
-        self._sample_metadata_tdb = tiledb.open(f"{dataset_path}/{sample_metadata_uri}", "r")
+        self._feature_annotation_tdb = tiledb.open(
+            f"{dataset_path}/{feature_annotation_uri}", "r"
+        )
+        self._sample_metadata_tdb = tiledb.open(
+            f"{dataset_path}/{sample_metadata_uri}", "r"
+        )
 
     def __del__(self):
         self._matrix_tdb_tdb.close()
@@ -108,7 +111,9 @@ class GenomicArrayDataset:
         res = qtd.get_a_column(self._feature_annotation_tdb, "genarr_feature_index")
         return res["genarr_feature_index"].tolist()
 
-    def get_feature_subset(self, subset: Union[slice, List[str], tiledb.QueryCondition], columns=None) -> pd.DataFrame:
+    def get_feature_subset(
+        self, subset: Union[slice, List[str], tiledb.QueryCondition], columns=None
+    ) -> pd.DataFrame:
         """Slice the ``feature_annotation`` store.
 
         Args:
@@ -143,12 +148,16 @@ class GenomicArrayDataset:
                     _not_avail.append(col)
 
             if len(_not_avail) > 0:
-                raise ValueError(f"Columns '{', '.join(_not_avail)}' are not available.")
+                raise ValueError(
+                    f"Columns '{', '.join(_not_avail)}' are not available."
+                )
 
         if qtd._is_list_strings(subset):
             subset = self._get_indices_for_gene_list(subset)
 
-        return qtd.subset_frame(self._feature_annotation_tdb, subset=subset, columns=columns)
+        return qtd.subset_frame(
+            self._feature_annotation_tdb, subset=subset, columns=columns
+        )
 
     ####
     ## Subset methods for the `sample_metadata` TileDB file.
@@ -175,7 +184,9 @@ class GenomicArrayDataset:
         res = qtd.get_a_column(self._sample_metadata_tdb, column_name=column_name)
         return res[column_name]
 
-    def get_sample_subset(self, subset: Union[slice, tiledb.QueryCondition], columns=None) -> pd.DataFrame:
+    def get_sample_subset(
+        self, subset: Union[slice, tiledb.QueryCondition], columns=None
+    ) -> pd.DataFrame:
         """Slice the ``sample_metadata`` store.
 
         Args:
@@ -206,9 +217,13 @@ class GenomicArrayDataset:
                     _not_avail.append(col)
 
             if len(_not_avail) > 0:
-                raise ValueError(f"Columns '{', '.join(_not_avail)}' are not available.")
+                raise ValueError(
+                    f"Columns '{', '.join(_not_avail)}' are not available."
+                )
 
-        return qtd.subset_frame(self._sample_metadata_tdb, subset=subset, columns=columns)
+        return qtd.subset_frame(
+            self._sample_metadata_tdb, subset=subset, columns=columns
+        )
 
     ####
     ## Subset methods for the `matrix` TileDB file.
@@ -252,7 +267,9 @@ class GenomicArrayDataset:
                     shape=(len(subset[0]), len(subset[1])),
                 )
             else:
-                raise ValueError(f"`{type(self).__name__}` only supports 2-dimensional slicing.")
+                raise ValueError(
+                    f"`{type(self).__name__}` only supports 2-dimensional slicing."
+                )
 
     ####
     ## Subset methods by cell and gene dimensions.
@@ -335,9 +352,13 @@ class GenomicArrayDataset:
             elif len(args) == 2:
                 return self.get_slice(args[0], args[1])
             else:
-                raise ValueError(f"`{type(self).__name__}` only supports 2-dimensional slicing.")
+                raise ValueError(
+                    f"`{type(self).__name__}` only supports 2-dimensional slicing."
+                )
 
-        raise TypeError("args must be a sequence or a scalar integer or string or a tuple of atmost 2 values.")
+        raise TypeError(
+            "args must be a sequence or a scalar integer or string or a tuple of atmost 2 values."
+        )
 
     ####
     ## Misc methods.
