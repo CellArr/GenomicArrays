@@ -3,7 +3,6 @@ import shutil
 from typing import Union
 
 import numpy as np
-import pandas as pd
 import tiledb
 
 __author__ = "Jayaram Kancherla"
@@ -15,7 +14,7 @@ def create_tiledb_array(
     tiledb_uri_path: str,
     x_dim_length: int = None,
     y_dim_length: int = None,
-    x_dim_name: str = "base",
+    x_dim_name: str = "feature_index",
     y_dim_name: str = "sample_index",
     matrix_attr_name: str = "data",
     x_dim_dtype: np.dtype = np.uint32,
@@ -46,11 +45,11 @@ def create_tiledb_array(
 
         x_dim_name:
             Name for the x-dimension.
-            Defaults to "cell_index".
+            Defaults to "feature_index".
 
         y_dim_name:
             Name for the y-dimension.
-            Defaults to "gene_index".
+            Defaults to "sample_index".
 
         matrix_attr_name:
             Name for the attribute in the array.
@@ -114,8 +113,7 @@ def write_frame_intervals_to_tiledb(
     y_idx: int,
     value_dtype: np.dtype = np.float32,
 ):
-    """Append and save array data to TileDB.
-    Expect data for one full sample (column).
+    """Append and save array data to TileDB. Expect data for one full sample (column).
 
     Args:
         tiledb_array_uri:

@@ -28,23 +28,18 @@ Example:
         )
 """
 
-import itertools
 import os
 import warnings
 from multiprocessing import Pool
-from typing import Dict, Union
+from typing import Union
 
-import numpy as np
 import pandas as pd
-import pyBigWig as bw
-import tiledb
 from cellarr import buildutils_tiledb_frame as utf
 
 from . import build_options as bopt
 from . import buildutils_tiledb_array as uta
 from . import utils_bw as ubw
-
-# from .GenomicArrayDataset import GenomicArrayDataset
+from .GenomicArrayDataset import GenomicArrayDataset
 
 __author__ = "Jayaram Kancherla"
 __copyright__ = "Jayaram Kancherla"
@@ -84,14 +79,14 @@ def build_genomicarray(
             Alternatively, may provide path to the file containing a
             list of intervals. In this case,
             the first row is expected to contain the column names,
-            "chrom", "start" and "end".
+            "seqnames", "starts" and "ends".
 
         genome:
             A string specifying the genome to automatically download the
             chromosome sizes from ucsc.
 
             Alternatively, may provide a :py:class:`~pandas.DataFrame`
-            containing columns 'chrom' and 'lengths'.
+            containing columns 'seqnames' and 'lengths'.
 
             Note: This parameter is currently not used. Ideally this will
             be used to truncate the regions.
@@ -163,7 +158,7 @@ def build_genomicarray(
     elif isinstance(features, pd.DataFrame):
         input_intervals = features.copy()
 
-        required_cols = {"chrom", "start", "end"}
+        required_cols = {"seqnames", "starts", "ends"}
         if not required_cols.issubset(input_intervals.columns):
             missing = required_cols - set(input_intervals.columns)
             raise ValueError(f"Missing required columns: {missing}")
@@ -177,6 +172,9 @@ def build_genomicarray(
         _col_types = utf.infer_column_types(
             input_intervals, feature_annotation_options.column_types
         )
+
+        if "genarr_feature_index" not in input_intervals.columns:
+            input_intervals["genarr_feature_index"] = range(0, len(input_intervals))
 
         _feature_output_uri = (
             f"{output_path}/{feature_annotation_options.tiledb_store_name}"
@@ -253,25 +251,28 @@ def build_genomicarray(
             )
             for idx, bwpath in enumerate(files)
         ]
-        with Pool(num_threads) as p:
-            p.map(_wrapper_extract_bwinfo, all_bws_options)
+
+        if num_threads > 1:
+            with Pool(num_threads) as p:
+                p.map(_wrapper_extract_bwinfo, all_bws_options)
+        else:
+            for opt in all_bws_options:
+                _wrapper_extract_bwinfo(opt)
 
         if optimize_tiledb:
             uta.optimize_tiledb_array(_cov_uri)
 
-    # return GenomicArrayDataset(
-    #     dataset_path=output_path,
-    #     sample_metadata_uri=sample_metadata_options.tiledb_store_name,
-    #     cell_metadata_uri=cell_metadata_options.tiledb_store_name,
-    #     gene_annotation_uri=gene_annotation_options.tiledb_store_name,
-    #     matrix_tdb_uri=matrix_options.tiledb_store_name,
-    # )
+    return GenomicArrayDataset(
+        dataset_path=output_path,
+        sample_metadata_uri=sample_metadata_options.tiledb_store_name,
+        feature_annotation_uri=feature_annotation_options.tiledb_store_name,
+        matrix_tdb_uri=matrix_options.tiledb_store_name,
+    )
 
 
 def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func):
-    """Wrapper to extract the data for the given intervals from the
-    bigwig file and write the output to the tiledb file.
-    """
+    """Wrapper to extract the data for the given intervals from the bigwig file and write the output to the tiledb
+    file."""
     data = ubw.extract_bw_intervals_as_vec(bwpath, intervals, agg_func)
 
     if data is not None and len(data) > 0:
