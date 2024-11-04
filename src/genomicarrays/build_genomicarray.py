@@ -20,8 +20,15 @@ Example:
         # or just provide the path
         bw2 = "path/to/object2.bw"
 
+        features = pd.DataFrame({
+            "seqnames": ["chr1", "chr1"],
+            "starts": [1000, 2000],
+            "ends": [1500, 2500]
+        })
+
         # Build GenomicArray
         dataset = build_genomicarray(
+            features=features
             output_path=tempdir,
             files=[bw1, bw2],
             matrix_options=MatrixOptions(dtype=np.float32),

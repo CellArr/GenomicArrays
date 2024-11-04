@@ -11,7 +11,7 @@ Example:
         from genomicarray import GenomicArrayDataset
 
         garr = GenomicArrayDataset(dataset_path="/path/to/genomicarray/dir")
-        feature_indices = slice(1, 10)
+        feature_indices = slice(0, 10)
         result1 = garr[feature_indices, 0]
 
         print(result1)
