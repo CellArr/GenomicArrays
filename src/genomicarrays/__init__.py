@@ -16,3 +16,6 @@ finally:
     del version, PackageNotFoundError
 
 from .build_genomicarray import build_genomicarray
+from .build_options import FeatureAnnotationOptions, MatrixOptions, SampleMetadataOptions
+from .GenomicArrayDataset import GenomicArrayDataset
+from .GenomicArrayDatasetSlice import GenomicArrayDatasetSlice

@@ -111,7 +111,7 @@ class FeatureAnnotationOptions:
 
         tiledb_store_name:
             Name of the TileDB file.
-            Defaults to "feature_annotations".
+            Defaults to "feature_annotation".
 
         column_types:
             A dictionary containing column names as keys
@@ -127,6 +127,10 @@ class FeatureAnnotationOptions:
 
     skip: bool = False
     dtype: np.dtype = np.uint32
-    tiledb_store_name: str = "feature_annotations"
+    tiledb_store_name: str = "feature_annotation"
     column_types: Dict[str, np.dtype] = None
     aggregate_function: callable = np.nanmean
+
+    def __post_init__(self):
+        if self.column_types is None:
+            self.column_types = {"seqnames": "ascii", "starts": "int", "ends": "int"}

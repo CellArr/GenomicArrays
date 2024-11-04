@@ -15,7 +15,7 @@ def test_ingest_bigwigs():
     tempdir = tempfile.mkdtemp()
 
     strts = np.arange(300, 600, 20)
-    features = pd.DataFrame({"chrom": ["chr1"] * 15, "start": strts, "end": strts + 15})
+    features = pd.DataFrame({"seqnames": ["chr1"] * 15, "starts": strts, "ends": strts + 15})
 
     build_genomicarray(
         output_path=tempdir,
@@ -24,7 +24,7 @@ def test_ingest_bigwigs():
     )
 
     cfp = tiledb.open(f"{tempdir}/coverage", "r")
-    ffp = tiledb.open(f"{tempdir}/feature_annotations", "r")
+    ffp = tiledb.open(f"{tempdir}/feature_annotation", "r")
 
     features = ffp.df[:]
 

@@ -14,7 +14,7 @@ def create_tiledb_array(
     tiledb_uri_path: str,
     x_dim_length: int = None,
     y_dim_length: int = None,
-    x_dim_name: str = "base",
+    x_dim_name: str = "feature_index",
     y_dim_name: str = "sample_index",
     matrix_attr_name: str = "data",
     x_dim_dtype: np.dtype = np.uint32,
@@ -45,11 +45,11 @@ def create_tiledb_array(
 
         x_dim_name:
             Name for the x-dimension.
-            Defaults to "cell_index".
+            Defaults to "feature_index".
 
         y_dim_name:
             Name for the y-dimension.
-            Defaults to "gene_index".
+            Defaults to "sample_index".
 
         matrix_attr_name:
             Name for the attribute in the array.
