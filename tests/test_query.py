@@ -16,7 +16,9 @@ def test_query():
     tempdir = tempfile.mkdtemp()
 
     strts = np.arange(300, 600, 20)
-    features = pd.DataFrame({"seqnames": ["chr1"] * 15, "starts": strts, "ends": strts + 15})
+    features = pd.DataFrame(
+        {"seqnames": ["chr1"] * 15, "starts": strts, "ends": strts + 15}
+    )
 
     dataset = build_genomicarray(
         output_path=tempdir,
@@ -40,7 +42,7 @@ def test_query():
     assert cd.shape == (15, 2)
     assert len(cd) == 15
 
-    result1 = cd[:,0]
+    result1 = cd[:, 0]
 
     assert result1 is not None
     assert result1.matrix.shape == (len(features), 1)
@@ -66,11 +68,13 @@ def test_query():
     assert len(cd.get_sample_metadata_column("genarr_sample")) == 2
     assert len(cd.get_sample_subset("genarr_sample == 'sample_1'")) == 1
 
-    assert sorted(cd.get_feature_annotation_columns()) == sorted(["seqnames", "starts", "ends", "genarr_feature_index"])
+    assert sorted(cd.get_feature_annotation_columns()) == sorted(
+        ["seqnames", "starts", "ends", "genarr_feature_index"]
+    )
     assert len(cd.get_feature_annotation_column("genarr_feature_index")) == 15
     assert len(cd.get_feature_subset("genarr_feature_index == 1")) == 1
 
-    result1 = cd.get_slice(slice(0,5), slice(None))
+    result1 = cd.get_slice(slice(0, 5), slice(None))
     assert result1 is not None
     assert result1.matrix.shape == (6, 2)
 
