@@ -57,13 +57,13 @@ files = os.listdir(bw_dir)
 bw_files = [f"{bw_dir}/{f}" for f in files]
 
 features = pd.DataFrame({
-     "chrom": ["chr1", "chr1"],
-     "start": [1000, 2000],
-     "end": [1500, 2500]
+     "seqnames": ["chr1", "chr1"],
+     "starts": [1000, 2000],
+     "ends": [1500, 2500]
 })
 
 # Build GenomicArray
-garr.build_genomicarray(
+dataset = garr.build_genomicarray(
      files=bw_files,
      output_path=tempdir,
      features=features,
@@ -79,6 +79,48 @@ garr.build_genomicarray(
 
 The build process stores missing intervals from a bigwig file as `np.nan`. The
 default is to choose an aggregate functions that works with `np.nan`.
+
+### Query a `GenomicArrayDataset`
+
+Users have the option to reuse the `dataset` object retuned when building the arrays or by creating a `GenomicArrayDataset` object by initializing it to the path where the files were created.
+
+```python
+# Create a GenomicArrayDataset object from the existing dataset
+dataset = GenomicArrayDataset(dataset_path=tempdir)
+
+# Query data for the first 10 regions across all samples
+coverage_data = dataset[0:10, :]
+
+print(expression_data.matrix)
+print(expression_data.feature_annotation)
+```
+
+     ## output 1
+     array([[1. , 0.5],
+          [1. , 0.5],
+          [1. , 0.5],
+          [1. , 0.5],
+          [1. , 0.5],
+          [1. , 0.5],
+          [1. , 0.5],
+          [1. , 0.5],
+          [1. , 0.5],
+          [1. , 0.5],
+          [1. , nan]], dtype=float32)
+
+     ## output 2
+     seqnames  starts  ends  genarr_feature_index
+     0      chr1     300   315                     0
+     1      chr1     320   335                     1
+     2      chr1     340   355                     2
+     3      chr1     360   375                     3
+     4      chr1     380   395                     4
+     5      chr1     400   415                     5
+     6      chr1     420   435                     6
+     7      chr1     440   455                     7
+     8      chr1     460   475                     8
+     9      chr1     480   495                     9
+     10     chr1     500   515                    10
 
 
 <!-- pyscaffold-notes -->
