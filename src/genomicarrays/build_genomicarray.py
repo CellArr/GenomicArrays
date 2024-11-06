@@ -42,6 +42,7 @@ from typing import Union
 
 import pandas as pd
 from cellarr import buildutils_tiledb_frame as utf
+from pyfaidx import Fasta
 
 from . import build_options as bopt
 from . import buildutils_tiledb_array as uta
@@ -58,7 +59,8 @@ def build_genomicarray(
     files: list,
     output_path: str,
     features: Union[str, pd.DataFrame],
-    genome: Union[str, pd.DataFrame] = "hg38",
+    genome_fasta: str,
+    # genome: Union[str, pd.DataFrame] = "hg38",
     sample_metadata: Union[pd.DataFrame, str] = None,
     sample_metadata_options: bopt.SampleMetadataOptions = bopt.SampleMetadataOptions(),
     matrix_options: bopt.MatrixOptions = bopt.MatrixOptions(),
@@ -88,15 +90,8 @@ def build_genomicarray(
             the first row is expected to contain the column names,
             "seqnames", "starts" and "ends".
 
-        genome:
-            A string specifying the genome to automatically download the
-            chromosome sizes from ucsc.
-
-            Alternatively, may provide a :py:class:`~pandas.DataFrame`
-            containing columns 'seqnames' and 'lengths'.
-
-            Note: This parameter is currently not used. Ideally this will
-            be used to truncate the regions.
+        genome_fasta:
+            Path to a fasta file containing the sequence information.
 
         sample_metadata:
             A :py:class:`~pandas.DataFrame` containing the sample
@@ -169,26 +164,27 @@ def build_genomicarray(
         if not required_cols.issubset(input_intervals.columns):
             missing = required_cols - set(input_intervals.columns)
             raise ValueError(f"Missing required columns: {missing}")
-
     else:
-        raise TypeError(
-            "'input_intervals' is not an expected type (either 'str' or 'Dataframe')."
-        )
+        raise TypeError("'input_intervals' is not an expected type (either 'str' or 'Dataframe').")
 
     if not feature_annotation_options.skip:
-        _col_types = utf.infer_column_types(
-            input_intervals, feature_annotation_options.column_types
-        )
+
+        if "sequence" not in input_intervals.columns:
+            gen_fa = Fasta(genome_fasta, as_raw=True)
+            sequences = []
+            for row in input_intervals.itertuples():
+                seq = gen_fa.get_seq(row.seqnames, row.starts, row.ends)
+                sequences.append(seq)
+
+            input_intervals["sequences"] = sequences
+
+        _col_types = utf.infer_column_types(input_intervals, feature_annotation_options.column_types)
 
         if "genarr_feature_index" not in input_intervals.columns:
             input_intervals["genarr_feature_index"] = range(0, len(input_intervals))
 
-        _feature_output_uri = (
-            f"{output_path}/{feature_annotation_options.tiledb_store_name}"
-        )
-        utf.create_tiledb_frame_from_dataframe(
-            _feature_output_uri, input_intervals, column_types=_col_types
-        )
+        _feature_output_uri = f"{output_path}/{feature_annotation_options.tiledb_store_name}"
+        utf.create_tiledb_frame_from_dataframe(_feature_output_uri, input_intervals, column_types=_col_types)
 
         if optimize_tiledb:
             uta.optimize_tiledb_array(_feature_output_uri)
@@ -218,16 +214,10 @@ def build_genomicarray(
         raise TypeError("'sample_metadata' is not an expected type.")
 
     if not sample_metadata_options.skip:
-        _col_types = utf.infer_column_types(
-            sample_metadata, sample_metadata_options.column_types
-        )
+        _col_types = utf.infer_column_types(sample_metadata, sample_metadata_options.column_types)
 
-        _sample_output_uri = (
-            f"{output_path}/{sample_metadata_options.tiledb_store_name}"
-        )
-        utf.create_tiledb_frame_from_dataframe(
-            _sample_output_uri, sample_metadata, column_types=_col_types
-        )
+        _sample_output_uri = f"{output_path}/{sample_metadata_options.tiledb_store_name}"
+        utf.create_tiledb_frame_from_dataframe(_sample_output_uri, sample_metadata, column_types=_col_types)
 
         if optimize_tiledb:
             uta.optimize_tiledb_array(_sample_output_uri)
@@ -289,6 +279,4 @@ def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func):
 def _wrapper_extract_bwinfo(args):
     """Wrapper for multiprocessing multiple files and intervals."""
     counts_uri, input_intervals, bwpath, idx, agg_func = args
-    return _write_intervals_to_tiledb(
-        counts_uri, input_intervals, bwpath, idx, agg_func
-    )
+    return _write_intervals_to_tiledb(counts_uri, input_intervals, bwpath, idx, agg_func)
