@@ -67,6 +67,9 @@ dataset = garr.build_genomicarray(
      files=bw_files,
      output_path=tempdir,
      features=features,
+     # Specify a fasta file to extract sequences
+     # for each region in features
+     genome_fasta="path/to/genome.fasta",
      # agg function to summarize mutiple values
      # from bigwig within an input feature interval.
      feature_annotation_options=garr.FeatureAnnotationOptions(

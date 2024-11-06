@@ -24,6 +24,7 @@ def test_query():
         output_path=tempdir,
         files=["tests/data/test1.bw", "tests/data/test2.bw"],
         features=features,
+        genome_fasta="tests/data/test.fa"
     )
 
     assert dataset is not None
@@ -69,7 +70,7 @@ def test_query():
     assert len(cd.get_sample_subset("genarr_sample == 'sample_1'")) == 1
 
     assert sorted(cd.get_feature_annotation_columns()) == sorted(
-        ["seqnames", "starts", "ends", "genarr_feature_index"]
+        ["seqnames", "starts", "ends", "genarr_feature_index", "sequences"]
     )
     assert len(cd.get_feature_annotation_column("genarr_feature_index")) == 15
     assert len(cd.get_feature_subset("genarr_feature_index == 1")) == 1

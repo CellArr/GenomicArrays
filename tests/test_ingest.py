@@ -23,6 +23,7 @@ def test_ingest_bigwigs():
         output_path=tempdir,
         files=["tests/data/test1.bw", "tests/data/test2.bw"],
         features=features,
+        genome_fasta="tests/data/test.fa"
     )
 
     cfp = tiledb.open(f"{tempdir}/coverage", "r")

@@ -90,8 +90,17 @@ def build_genomicarray(
             the first row is expected to contain the column names,
             "seqnames", "starts" and "ends".
 
+            Additionally, the file may contain a column `sequences`,
+            to specify the sequence string for each region. Otherwise,
+            provide a link to the fasta file using the ``genome_fasta``
+            parameter.
+
         genome_fasta:
             Path to a fasta file containing the sequence information.
+
+            Sequence information will be updated for each region
+            in ``features`` if the DataFrame/path does not contain
+            a column `sequences`.
 
         sample_metadata:
             A :py:class:`~pandas.DataFrame` containing the sample
