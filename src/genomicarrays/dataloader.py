@@ -32,9 +32,8 @@ __license__ = "MIT"
 
 
 class TorchDataset(Dataset):
-    """A class that extends pytorch :py:class:`~torch.utils.data.Dataset`
-    to enumerate features and samples using TileDB.
-    """
+    """A class that extends pytorch :py:class:`~torch.utils.data.Dataset` to enumerate features and samples using
+    TileDB."""
 
     def __init__(self, dataset_path: Union[str, GenomicArrayDataset]):
         """Initialize a ``gaTorchDataset``.
