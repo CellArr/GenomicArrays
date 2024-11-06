@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="genomicarrays" href="modules.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>genomicarrays package - GenomicArrays 0.0.1 documentation</title>
+        <title>genomicarrays package - GenomicArrays 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">GenomicArrays 0.0.1 documentation</div></a>
+      <a href="../index.html"><div class="brand">GenomicArrays 0.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">GenomicArrays 0.0.1 documentation</span>
+  <span class="sidebar-brand-text">GenomicArrays 0.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -264,8 +264,7 @@ generated TileDB files usually using the
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">genomicarray</span> <span class="kn">import</span> <span class="n">GenomicArrayDataset</span>
 
 <span class="n">garr</span> <span class="o">=</span> <span class="n">GenomicArrayDataset</span><span class="p">(</span><span class="n">dataset_path</span><span class="o">=</span><span class="s2">&quot;/path/to/genomicarray/dir&quot;</span><span class="p">)</span>
-<span class="n">feature_indices</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span>
-<span class="n">result1</span> <span class="o">=</span> <span class="n">garr</span><span class="p">[</span><span class="n">feature_indices</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">result1</span> <span class="o">=</span> <span class="n">garr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
 </pre></div>
@@ -538,7 +537,7 @@ methods from
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">genomicarray</span> <span class="kn">import</span> <span class="n">GenomicArrayDataset</span>
 
 <span class="n">garr</span> <span class="o">=</span> <span class="n">GenomicArrayDataset</span><span class="p">(</span><span class="n">dataset_path</span><span class="o">=</span><span class="s2">&quot;/path/to/genomicarray/dir&quot;</span><span class="p">)</span>
-<span class="n">feature_indices</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">feature_indices</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">result1</span> <span class="o">=</span> <span class="n">garr</span><span class="p">[</span><span class="n">feature_indices</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
@@ -653,8 +652,15 @@ It supports parallel processing for handling large collection of genomic dataset
 <span class="c1"># or just provide the path</span>
 <span class="n">bw2</span> <span class="o">=</span> <span class="s2">&quot;path/to/object2.bw&quot;</span>
 
+<span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;seqnames&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;chr1&quot;</span><span class="p">,</span> <span class="s2">&quot;chr1&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;starts&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">],</span>
+    <span class="s2">&quot;ends&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">2500</span><span class="p">]</span>
+<span class="p">})</span>
+
 <span class="c1"># Build GenomicArray</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">build_genomicarray</span><span class="p">(</span>
+    <span class="n">features</span><span class="o">=</span><span class="n">features</span>
     <span class="n">output_path</span><span class="o">=</span><span class="n">tempdir</span><span class="p">,</span>
     <span class="n">files</span><span class="o">=</span><span class="p">[</span><span class="n">bw1</span><span class="p">,</span> <span class="n">bw2</span><span class="p">],</span>
     <span class="n">matrix_options</span><span class="o">=</span><span class="n">MatrixOptions</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
@@ -663,7 +669,7 @@ It supports parallel processing for handling large collection of genomic dataset
 </div>
 <dl class="py function">
 <dt class="sig sig-object py" id="genomicarrays.build_genomicarray.build_genomicarray">
-<span class="sig-prename descclassname"><span class="pre">genomicarrays.build_genomicarray.</span></span><span class="sig-name descname"><span class="pre">build_genomicarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome='hg38'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata_options=SampleMetadataOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='sample_metadata'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_options=MatrixOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_attr_name='data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='coverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression='zstd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_level=4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_annotation_options=FeatureAnnotationOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types={'seqnames':</span> <span class="pre">'ascii'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'starts':</span> <span class="pre">'int'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'ends':</span> <span class="pre">'int'}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=&lt;function</span> <span class="pre">nanmean&gt;)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize_tiledb=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads=1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_genomicarray.html#build_genomicarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_genomicarray.build_genomicarray" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.build_genomicarray.</span></span><span class="sig-name descname"><span class="pre">build_genomicarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_fasta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata_options=SampleMetadataOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='sample_metadata'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_options=MatrixOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_attr_name='data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='coverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression='zstd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_level=4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_annotation_options=FeatureAnnotationOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types={'seqnames':</span> <span class="pre">'ascii'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'starts':</span> <span class="pre">'int'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'ends':</span> <span class="pre">'int'}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=&lt;function</span> <span class="pre">nanmean&gt;)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize_tiledb=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads=1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_genomicarray.html#build_genomicarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_genomicarray.build_genomicarray" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the <cite>GenomicArrayDatset</cite>.</p>
 <p>All files are expected to be consistent and any modifications
 to make them consistent is outside the scope of this function
@@ -679,13 +685,15 @@ intervals..</p>
 list of intervals. In this case,
 the first row is expected to contain the column names,
 “seqnames”, “starts” and “ends”.</p>
+<p>Additionally, the file may contain a column <cite>sequences</cite>,
+to specify the sequence string for each region. Otherwise,
+provide a link to the fasta file using the <code class="docutils literal notranslate"><span class="pre">genome_fasta</span></code>
+parameter.</p>
 </p></li>
-<li><p><strong>genome</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>]</span>) – <p>A string specifying the genome to automatically download the
-chromosome sizes from ucsc.</p>
-<p>Alternatively, may provide a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
-containing columns ‘seqnames’ and ‘lengths’.</p>
-<p>Note: This parameter is currently not used. Ideally this will
-be used to truncate the regions.</p>
+<li><p><strong>genome_fasta</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – <p>Path to a fasta file containing the sequence information.</p>
+<p>Sequence information will be updated for each region
+in <code class="docutils literal notranslate"><span class="pre">features</span></code> if the DataFrame/path does not contain
+a column <cite>sequences</cite>.</p>
 </p></li>
 <li><p><strong>sample_metadata</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]</span>) – <p>A <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> containing the sample
 metadata for each file in <code class="docutils literal notranslate"><span class="pre">files</span></code>. Hences the number of rows
@@ -1203,6 +1211,9 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">float32
 </dd></dl>
 
 </section>
+<section id="genomicarrays-dataloader-module">
+<h2>genomicarrays.dataloader module<a class="headerlink" href="#genomicarrays-dataloader-module" title="Link to this heading">¶</a></h2>
+</section>
 <section id="module-genomicarrays.queryutils_tiledb_frame">
 <span id="genomicarrays-queryutils-tiledb-frame-module"></span><h2>genomicarrays.queryutils_tiledb_frame module<a class="headerlink" href="#module-genomicarrays.queryutils_tiledb_frame" title="Link to this heading">¶</a></h2>
 <dl class="py function">
@@ -1518,6 +1529,7 @@ region or <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <li><a class="reference internal" href="#genomicarrays.buildutils_tiledb_array.write_frame_intervals_to_tiledb"><code class="docutils literal notranslate"><span class="pre">write_frame_intervals_to_tiledb()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#genomicarrays-dataloader-module">genomicarrays.dataloader module</a></li>
 <li><a class="reference internal" href="#module-genomicarrays.queryutils_tiledb_frame">genomicarrays.queryutils_tiledb_frame module</a><ul>
 <li><a class="reference internal" href="#genomicarrays.queryutils_tiledb_frame.get_a_column"><code class="docutils literal notranslate"><span class="pre">get_a_column()</span></code></a></li>
 <li><a class="reference internal" href="#genomicarrays.queryutils_tiledb_frame.get_index"><code class="docutils literal notranslate"><span class="pre">get_index()</span></code></a></li>
@@ -1543,7 +1555,7 @@ region or <code class="docutils literal notranslate"><span class="pre">np.nan</s
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=d45e8c67"></script>
+</div><script src="../_static/documentation_options.js?v=e3a6060d"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>

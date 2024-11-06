@@ -44,6 +44,14 @@ genomicarrays.buildutils\_tiledb\_array module
    :undoc-members:
    :show-inheritance:
 
+genomicarrays.dataloader module
+-------------------------------
+
+.. automodule:: genomicarrays.dataloader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 genomicarrays.queryutils\_tiledb\_frame module
 ----------------------------------------------
 

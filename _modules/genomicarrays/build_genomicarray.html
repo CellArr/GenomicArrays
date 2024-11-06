@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>genomicarrays.build_genomicarray - GenomicArrays 0.0.1 documentation</title>
+        <title>genomicarrays.build_genomicarray - GenomicArrays 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">GenomicArrays 0.0.1 documentation</div></a>
+      <a href="../../index.html"><div class="brand">GenomicArrays 0.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -190,7 +190,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">GenomicArrays 0.0.1 documentation</span>
+  <span class="sidebar-brand-text">GenomicArrays 0.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -265,8 +265,15 @@
 <span class="sd">        # or just provide the path</span>
 <span class="sd">        bw2 = &quot;path/to/object2.bw&quot;</span>
 
+<span class="sd">        features = pd.DataFrame({</span>
+<span class="sd">            &quot;seqnames&quot;: [&quot;chr1&quot;, &quot;chr1&quot;],</span>
+<span class="sd">            &quot;starts&quot;: [1000, 2000],</span>
+<span class="sd">            &quot;ends&quot;: [1500, 2500]</span>
+<span class="sd">        })</span>
+
 <span class="sd">        # Build GenomicArray</span>
 <span class="sd">        dataset = build_genomicarray(</span>
+<span class="sd">            features=features</span>
 <span class="sd">            output_path=tempdir,</span>
 <span class="sd">            files=[bw1, bw2],</span>
 <span class="sd">            matrix_options=MatrixOptions(dtype=np.float32),</span>
@@ -280,6 +287,7 @@
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">cellarr</span> <span class="kn">import</span> <span class="n">buildutils_tiledb_frame</span> <span class="k">as</span> <span class="n">utf</span>
+<span class="kn">from</span> <span class="nn">pyfaidx</span> <span class="kn">import</span> <span class="n">Fasta</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">build_options</span> <span class="k">as</span> <span class="n">bopt</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">buildutils_tiledb_array</span> <span class="k">as</span> <span class="n">uta</span>
@@ -298,7 +306,8 @@
     <span class="n">files</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
     <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">features</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">],</span>
-    <span class="n">genome</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
+    <span class="n">genome_fasta</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="c1"># genome: Union[str, pd.DataFrame] = &quot;hg38&quot;,</span>
     <span class="n">sample_metadata</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">sample_metadata_options</span><span class="p">:</span> <span class="n">bopt</span><span class="o">.</span><span class="n">SampleMetadataOptions</span> <span class="o">=</span> <span class="n">bopt</span><span class="o">.</span><span class="n">SampleMetadataOptions</span><span class="p">(),</span>
     <span class="n">matrix_options</span><span class="p">:</span> <span class="n">bopt</span><span class="o">.</span><span class="n">MatrixOptions</span> <span class="o">=</span> <span class="n">bopt</span><span class="o">.</span><span class="n">MatrixOptions</span><span class="p">(),</span>
@@ -328,15 +337,17 @@
 <span class="sd">            the first row is expected to contain the column names,</span>
 <span class="sd">            &quot;seqnames&quot;, &quot;starts&quot; and &quot;ends&quot;.</span>
 
-<span class="sd">        genome:</span>
-<span class="sd">            A string specifying the genome to automatically download the</span>
-<span class="sd">            chromosome sizes from ucsc.</span>
+<span class="sd">            Additionally, the file may contain a column `sequences`,</span>
+<span class="sd">            to specify the sequence string for each region. Otherwise,</span>
+<span class="sd">            provide a link to the fasta file using the ``genome_fasta``</span>
+<span class="sd">            parameter.</span>
 
-<span class="sd">            Alternatively, may provide a :py:class:`~pandas.DataFrame`</span>
-<span class="sd">            containing columns &#39;seqnames&#39; and &#39;lengths&#39;.</span>
+<span class="sd">        genome_fasta:</span>
+<span class="sd">            Path to a fasta file containing the sequence information.</span>
 
-<span class="sd">            Note: This parameter is currently not used. Ideally this will</span>
-<span class="sd">            be used to truncate the regions.</span>
+<span class="sd">            Sequence information will be updated for each region</span>
+<span class="sd">            in ``features`` if the DataFrame/path does not contain</span>
+<span class="sd">            a column `sequences`.</span>
 
 <span class="sd">        sample_metadata:</span>
 <span class="sd">            A :py:class:`~pandas.DataFrame` containing the sample</span>
@@ -409,26 +420,27 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">required_cols</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">input_intervals</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
             <span class="n">missing</span> <span class="o">=</span> <span class="n">required_cols</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">input_intervals</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing required columns: </span><span class="si">{</span><span class="n">missing</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-            <span class="s2">&quot;&#39;input_intervals&#39; is not an expected type (either &#39;str&#39; or &#39;Dataframe&#39;).&quot;</span>
-        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;input_intervals&#39; is not an expected type (either &#39;str&#39; or &#39;Dataframe&#39;).&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">feature_annotation_options</span><span class="o">.</span><span class="n">skip</span><span class="p">:</span>
-        <span class="n">_col_types</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">infer_column_types</span><span class="p">(</span>
-            <span class="n">input_intervals</span><span class="p">,</span> <span class="n">feature_annotation_options</span><span class="o">.</span><span class="n">column_types</span>
-        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;sequence&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">input_intervals</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">gen_fa</span> <span class="o">=</span> <span class="n">Fasta</span><span class="p">(</span><span class="n">genome_fasta</span><span class="p">,</span> <span class="n">as_raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">sequences</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">input_intervals</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">gen_fa</span><span class="o">.</span><span class="n">get_seq</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">seqnames</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">starts</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">ends</span><span class="p">)</span>
+                <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+
+            <span class="n">input_intervals</span><span class="p">[</span><span class="s2">&quot;sequences&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sequences</span>
+
+        <span class="n">_col_types</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">infer_column_types</span><span class="p">(</span><span class="n">input_intervals</span><span class="p">,</span> <span class="n">feature_annotation_options</span><span class="o">.</span><span class="n">column_types</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="s2">&quot;genarr_feature_index&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">input_intervals</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
             <span class="n">input_intervals</span><span class="p">[</span><span class="s2">&quot;genarr_feature_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_intervals</span><span class="p">))</span>
 
-        <span class="n">_feature_output_uri</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">feature_annotation_options</span><span class="o">.</span><span class="n">tiledb_store_name</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
-        <span class="n">utf</span><span class="o">.</span><span class="n">create_tiledb_frame_from_dataframe</span><span class="p">(</span>
-            <span class="n">_feature_output_uri</span><span class="p">,</span> <span class="n">input_intervals</span><span class="p">,</span> <span class="n">column_types</span><span class="o">=</span><span class="n">_col_types</span>
-        <span class="p">)</span>
+        <span class="n">_feature_output_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">feature_annotation_options</span><span class="o">.</span><span class="n">tiledb_store_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">utf</span><span class="o">.</span><span class="n">create_tiledb_frame_from_dataframe</span><span class="p">(</span><span class="n">_feature_output_uri</span><span class="p">,</span> <span class="n">input_intervals</span><span class="p">,</span> <span class="n">column_types</span><span class="o">=</span><span class="n">_col_types</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">optimize_tiledb</span><span class="p">:</span>
             <span class="n">uta</span><span class="o">.</span><span class="n">optimize_tiledb_array</span><span class="p">(</span><span class="n">_feature_output_uri</span><span class="p">)</span>
@@ -458,16 +470,10 @@
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;sample_metadata&#39; is not an expected type.&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">sample_metadata_options</span><span class="o">.</span><span class="n">skip</span><span class="p">:</span>
-        <span class="n">_col_types</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">infer_column_types</span><span class="p">(</span>
-            <span class="n">sample_metadata</span><span class="p">,</span> <span class="n">sample_metadata_options</span><span class="o">.</span><span class="n">column_types</span>
-        <span class="p">)</span>
+        <span class="n">_col_types</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">infer_column_types</span><span class="p">(</span><span class="n">sample_metadata</span><span class="p">,</span> <span class="n">sample_metadata_options</span><span class="o">.</span><span class="n">column_types</span><span class="p">)</span>
 
-        <span class="n">_sample_output_uri</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">sample_metadata_options</span><span class="o">.</span><span class="n">tiledb_store_name</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
-        <span class="n">utf</span><span class="o">.</span><span class="n">create_tiledb_frame_from_dataframe</span><span class="p">(</span>
-            <span class="n">_sample_output_uri</span><span class="p">,</span> <span class="n">sample_metadata</span><span class="p">,</span> <span class="n">column_types</span><span class="o">=</span><span class="n">_col_types</span>
-        <span class="p">)</span>
+        <span class="n">_sample_output_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">sample_metadata_options</span><span class="o">.</span><span class="n">tiledb_store_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">utf</span><span class="o">.</span><span class="n">create_tiledb_frame_from_dataframe</span><span class="p">(</span><span class="n">_sample_output_uri</span><span class="p">,</span> <span class="n">sample_metadata</span><span class="p">,</span> <span class="n">column_types</span><span class="o">=</span><span class="n">_col_types</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">optimize_tiledb</span><span class="p">:</span>
             <span class="n">uta</span><span class="o">.</span><span class="n">optimize_tiledb_array</span><span class="p">(</span><span class="n">_sample_output_uri</span><span class="p">)</span>
@@ -530,9 +536,7 @@
 <span class="k">def</span> <span class="nf">_wrapper_extract_bwinfo</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for multiprocessing multiple files and intervals.&quot;&quot;&quot;</span>
     <span class="n">counts_uri</span><span class="p">,</span> <span class="n">input_intervals</span><span class="p">,</span> <span class="n">bwpath</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">agg_func</span> <span class="o">=</span> <span class="n">args</span>
-    <span class="k">return</span> <span class="n">_write_intervals_to_tiledb</span><span class="p">(</span>
-        <span class="n">counts_uri</span><span class="p">,</span> <span class="n">input_intervals</span><span class="p">,</span> <span class="n">bwpath</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">agg_func</span>
-    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">_write_intervals_to_tiledb</span><span class="p">(</span><span class="n">counts_uri</span><span class="p">,</span> <span class="n">input_intervals</span><span class="p">,</span> <span class="n">bwpath</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">agg_func</span><span class="p">)</span>
 </pre></div>
         </article>
       </div>
@@ -565,7 +569,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+</div><script src="../../_static/documentation_options.js?v=e3a6060d"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>

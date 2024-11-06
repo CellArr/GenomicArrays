@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Contributing" href="contributing.html" /><link rel="prev" title="GenomicArrays" href="index.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>Genomic Arrays based on TileDB - GenomicArrays 0.0.1 documentation</title>
+        <title>Genomic Arrays based on TileDB - GenomicArrays 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">GenomicArrays 0.0.1 documentation</div></a>
+      <a href="index.html"><div class="brand">GenomicArrays 0.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">GenomicArrays 0.0.1 documentation</span>
+  <span class="sidebar-brand-text">GenomicArrays 0.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -300,16 +300,19 @@ and sample metadata attributes.</p></li>
 <span class="n">bw_files</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bw_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span>
 
 <span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-     <span class="s2">&quot;chrom&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;chr1&quot;</span><span class="p">,</span> <span class="s2">&quot;chr1&quot;</span><span class="p">],</span>
-     <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">],</span>
-     <span class="s2">&quot;end&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">2500</span><span class="p">]</span>
+     <span class="s2">&quot;seqnames&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;chr1&quot;</span><span class="p">,</span> <span class="s2">&quot;chr1&quot;</span><span class="p">],</span>
+     <span class="s2">&quot;starts&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">],</span>
+     <span class="s2">&quot;ends&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">2500</span><span class="p">]</span>
 <span class="p">})</span>
 
 <span class="c1"># Build GenomicArray</span>
-<span class="n">garr</span><span class="o">.</span><span class="n">build_genomicarray</span><span class="p">(</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">garr</span><span class="o">.</span><span class="n">build_genomicarray</span><span class="p">(</span>
      <span class="n">files</span><span class="o">=</span><span class="n">bw_files</span><span class="p">,</span>
      <span class="n">output_path</span><span class="o">=</span><span class="n">tempdir</span><span class="p">,</span>
      <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span>
+     <span class="c1"># Specify a fasta file to extract sequences</span>
+     <span class="c1"># for each region in features</span>
+     <span class="n">genome_fasta</span><span class="o">=</span><span class="s2">&quot;path/to/genome.fasta&quot;</span><span class="p">,</span>
      <span class="c1"># agg function to summarize mutiple values</span>
      <span class="c1"># from bigwig within an input feature interval.</span>
      <span class="n">feature_annotation_options</span><span class="o">=</span><span class="n">garr</span><span class="o">.</span><span class="n">FeatureAnnotationOptions</span><span class="p">(</span>
@@ -322,6 +325,48 @@ and sample metadata attributes.</p></li>
 </div>
 <p>The build process stores missing intervals from a bigwig file as <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>. The
 default is to choose an aggregate functions that works with <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>.</p>
+</section>
+<section id="query-a-genomicarraydataset">
+<h3>Query a <code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset</span></code><a class="headerlink" href="#query-a-genomicarraydataset" title="Link to this heading">¶</a></h3>
+<p>Users have the option to reuse the <code class="docutils literal notranslate"><span class="pre">dataset</span></code> object retuned when building the arrays or by creating a <code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset</span></code> object by initializing it to the path where the files were created.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a GenomicArrayDataset object from the existing dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">GenomicArrayDataset</span><span class="p">(</span><span class="n">dataset_path</span><span class="o">=</span><span class="n">tempdir</span><span class="p">)</span>
+
+<span class="c1"># Query data for the first 10 regions across all samples</span>
+<span class="n">coverage_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_data</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_data</span><span class="o">.</span><span class="n">feature_annotation</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> ## output 1
+ array([[1. , 0.5],
+      [1. , 0.5],
+      [1. , 0.5],
+      [1. , 0.5],
+      [1. , 0.5],
+      [1. , 0.5],
+      [1. , 0.5],
+      [1. , 0.5],
+      [1. , 0.5],
+      [1. , 0.5],
+      [1. , nan]], dtype=float32)
+
+ ## output 2
+ seqnames  starts  ends  genarr_feature_index
+ 0      chr1     300   315                     0
+ 1      chr1     320   335                     1
+ 2      chr1     340   355                     2
+ 3      chr1     360   375                     3
+ 4      chr1     380   395                     4
+ 5      chr1     400   415                     5
+ 6      chr1     420   435                     6
+ 7      chr1     440   455                     7
+ 8      chr1     460   475                     8
+ 9      chr1     480   495                     9
+ 10     chr1     500   515                    10
+</pre></div>
+</div>
 <!-- pyscaffold-notes -->
 </section>
 </section>
@@ -391,6 +436,7 @@ information on PyScaffold see <a class="reference external" href="https://pyscaf
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#quick-start">Quick Start</a><ul>
 <li><a class="reference internal" href="#build-a-genomicarray">Build a <code class="docutils literal notranslate"><span class="pre">GenomicArray</span></code></a></li>
+<li><a class="reference internal" href="#query-a-genomicarraydataset">Query a <code class="docutils literal notranslate"><span class="pre">GenomicArrayDataset</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#note">Note</a></li>
@@ -405,7 +451,7 @@ information on PyScaffold see <a class="reference external" href="https://pyscaf
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=d45e8c67"></script>
+</div><script src="_static/documentation_options.js?v=e3a6060d"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=5fa4622c"></script>
