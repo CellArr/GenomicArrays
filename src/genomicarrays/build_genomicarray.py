@@ -176,6 +176,20 @@ def build_genomicarray(
     else:
         raise TypeError("'input_intervals' is not an expected type (either 'str' or 'Dataframe').")
 
+    # append start index for each interval
+    total_length = None
+    if feature_annotation_options.aggregate_function is None:
+        input_intervals["widths"] = input_intervals["ends"] - input_intervals["starts"]
+        total_length = int(input_intervals["widths"].sum())
+        counter = input_intervals["widths"].shift(1)
+        counter[0] = 0
+        input_intervals["genarr_feature_start_index"] = counter.cumsum().astype(int)
+    else:
+        counter = [1] * len(input_intervals)
+        total_length = len(input_intervals)
+        counter[0] = 0
+        input_intervals["genarr_feature_start_index"] = counter.cumsum().astype(int)
+
     if not feature_annotation_options.skip:
 
         if "sequence" not in input_intervals.columns:
@@ -254,6 +268,7 @@ def build_genomicarray(
                 bwpath,
                 idx,
                 feature_annotation_options.aggregate_function,
+                total_length
             )
             for idx, bwpath in enumerate(files)
         ]
@@ -276,10 +291,10 @@ def build_genomicarray(
     )
 
 
-def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func):
+def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func, total_length):
     """Wrapper to extract the data for the given intervals from the bigwig file and write the output to the tiledb
     file."""
-    data = ubw.extract_bw_intervals_as_vec(bwpath, intervals, agg_func)
+    data = ubw.wrapper_extract_bw_values(bwpath, intervals, agg_func, total_length)
 
     if data is not None and len(data) > 0:
         uta.write_frame_intervals_to_tiledb(outpath, data=data, y_idx=bwidx)
@@ -287,5 +302,5 @@ def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func):
 
 def _wrapper_extract_bwinfo(args):
     """Wrapper for multiprocessing multiple files and intervals."""
-    counts_uri, input_intervals, bwpath, idx, agg_func = args
-    return _write_intervals_to_tiledb(counts_uri, input_intervals, bwpath, idx, agg_func)
+    counts_uri, input_intervals, bwpath, idx, agg_func, total_length = args
+    return _write_intervals_to_tiledb(counts_uri, input_intervals, bwpath, idx, agg_func, total_length)
