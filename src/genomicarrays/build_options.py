@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict, Literal
+from typing import Dict, Literal, Optional, Callable
 
 import numpy as np
 
@@ -122,14 +122,14 @@ class FeatureAnnotationOptions:
 
         aggregate_function:
             A callable to summarize the values in a given
-            interval. Defaults to NumPy's `nanmean`.
+            interval. Defaults to None.
     """
 
     skip: bool = False
     dtype: np.dtype = np.uint32
     tiledb_store_name: str = "feature_annotation"
     column_types: Dict[str, np.dtype] = None
-    aggregate_function: callable = np.nanmean
+    aggregate_function: Optional[Callable] = None
 
     def __post_init__(self):
         if self.column_types is None:
