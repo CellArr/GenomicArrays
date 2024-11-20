@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="genomicarrays" href="modules.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>genomicarrays package - GenomicArrays 0.0.2 documentation</title>
+        <title>genomicarrays package - GenomicArrays 0.0.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">GenomicArrays 0.0.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">GenomicArrays 0.0.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">GenomicArrays 0.0.2 documentation</span>
+  <span class="sidebar-brand-text">GenomicArrays 0.0.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -504,7 +504,7 @@ store.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sample_subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <code class="xref py py-class docutils literal notranslate"><span class="pre">QueryCondition</span></code>]</span>) – Integer indices, a boolean filter, or (if the current object is
 named) names specifying the columns (or samples) to retain.</p></li>
-<li><p><strong>feature_subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">QueryCondition</span></code>]</span>) – Integer indices, a boolean filter, or (if the current object is
+<li><p><strong>feature_subset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Integer indices, a boolean filter, or (if the current object is
 named) names specifying the rows (or features/genes) to retain.</p></li>
 </ul>
 </dd>
@@ -669,7 +669,7 @@ It supports parallel processing for handling large collection of genomic dataset
 </div>
 <dl class="py function">
 <dt class="sig sig-object py" id="genomicarrays.build_genomicarray.build_genomicarray">
-<span class="sig-prename descclassname"><span class="pre">genomicarrays.build_genomicarray.</span></span><span class="sig-name descname"><span class="pre">build_genomicarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_fasta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata_options=SampleMetadataOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='sample_metadata'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_options=MatrixOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_attr_name='data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='coverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression='zstd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_level=4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_annotation_options=FeatureAnnotationOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types={'seqnames':</span> <span class="pre">'ascii'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'starts':</span> <span class="pre">'int'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'ends':</span> <span class="pre">'int'}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=&lt;function</span> <span class="pre">nanmean&gt;)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize_tiledb=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads=1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_genomicarray.html#build_genomicarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_genomicarray.build_genomicarray" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.build_genomicarray.</span></span><span class="sig-name descname"><span class="pre">build_genomicarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_fasta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_metadata_options=SampleMetadataOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='sample_metadata'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_options=MatrixOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_attr_name='data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='coverage'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size=1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression='zstd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_level=4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_annotation_options=FeatureAnnotationOptions(skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types={'seqnames':</span> <span class="pre">'ascii'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'starts':</span> <span class="pre">'int'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'ends':</span> <span class="pre">'int'}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize_tiledb=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads=1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_genomicarray.html#build_genomicarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_genomicarray.build_genomicarray" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the <cite>GenomicArrayDatset</cite>.</p>
 <p>All files are expected to be consistent and any modifications
 to make them consistent is outside the scope of this function
@@ -724,7 +724,7 @@ Defaults to 1.</p></li>
 <span id="genomicarrays-build-options-module"></span><h2>genomicarrays.build_options module<a class="headerlink" href="#module-genomicarrays.build_options" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">genomicarrays.build_options.</span></span><span class="sig-name descname"><span class="pre">FeatureAnnotationOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=&lt;function</span> <span class="pre">nanmean&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_options.html#FeatureAnnotationOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">genomicarrays.build_options.</span></span><span class="sig-name descname"><span class="pre">FeatureAnnotationOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/build_options.html#FeatureAnnotationOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Optional arguments for the <code class="docutils literal notranslate"><span class="pre">feature</span></code> store for <a class="reference internal" href="#genomicarrays.build_genomicarray.build_genomicarray" title="genomicarrays.build_genomicarray.build_genomicarray"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_genomicarray()</span></code></a>.</p>
 <dl class="py attribute">
@@ -763,17 +763,17 @@ the TileDB.</p>
 <dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.aggregate_function">
 <span class="sig-name descname"><span class="pre">aggregate_function</span></span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.aggregate_function" title="Link to this definition">¶</a></dt>
 <dd><p>A callable to summarize the values in a given
-interval. Defaults to NumPy’s <cite>nanmean</cite>.</p>
+interval. Defaults to None.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__annotations__">
-<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'aggregate_function':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">callable&gt;,</span> <span class="pre">'column_types':</span> <span class="pre">typing.Dict[str,</span> <span class="pre">numpy.dtype],</span> <span class="pre">'dtype':</span> <span class="pre">&lt;class</span> <span class="pre">'numpy.dtype'&gt;,</span> <span class="pre">'skip':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;,</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__annotations__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'aggregate_function':</span> <span class="pre">typing.Optional[typing.Callable],</span> <span class="pre">'column_types':</span> <span class="pre">typing.Dict[str,</span> <span class="pre">numpy.dtype],</span> <span class="pre">'dtype':</span> <span class="pre">&lt;class</span> <span class="pre">'numpy.dtype'&gt;,</span> <span class="pre">'skip':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;,</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__annotations__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__dataclass_fields__">
-<span class="sig-name descname"><span class="pre">__dataclass_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'aggregate_function':</span> <span class="pre">Field(name='aggregate_function',type=&lt;built-in</span> <span class="pre">function</span> <span class="pre">callable&gt;,default=&lt;function</span> <span class="pre">nanmean&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'column_types':</span> <span class="pre">Field(name='column_types',type=typing.Dict[str,</span> <span class="pre">numpy.dtype],default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'dtype':</span> <span class="pre">Field(name='dtype',type=&lt;class</span> <span class="pre">'numpy.dtype'&gt;,default=&lt;class</span> <span class="pre">'numpy.uint32'&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'skip':</span> <span class="pre">Field(name='skip',type=&lt;class</span> <span class="pre">'bool'&gt;,default=False,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">Field(name='tiledb_store_name',type=&lt;class</span> <span class="pre">'str'&gt;,default='feature_annotation',default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD)}</span></em><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__dataclass_fields__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__dataclass_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'aggregate_function':</span> <span class="pre">Field(name='aggregate_function',type=typing.Optional[typing.Callable],default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'column_types':</span> <span class="pre">Field(name='column_types',type=typing.Dict[str,</span> <span class="pre">numpy.dtype],default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'dtype':</span> <span class="pre">Field(name='dtype',type=&lt;class</span> <span class="pre">'numpy.dtype'&gt;,default=&lt;class</span> <span class="pre">'numpy.uint32'&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'skip':</span> <span class="pre">Field(name='skip',type=&lt;class</span> <span class="pre">'bool'&gt;,default=False,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD),</span> <span class="pre">'tiledb_store_name':</span> <span class="pre">Field(name='tiledb_store_name',type=&lt;class</span> <span class="pre">'str'&gt;,default='feature_annotation',default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),_field_type=_FIELD)}</span></em><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__dataclass_fields__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -794,7 +794,7 @@ interval. Defaults to NumPy’s <cite>nanmean</cite>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="genomicarrays.build_options.FeatureAnnotationOptions.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=&lt;function</span> <span class="pre">nanmean&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiledb_store_name='feature_annotation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_function=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#genomicarrays.build_options.FeatureAnnotationOptions.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -808,84 +808,10 @@ interval. Defaults to NumPy’s <cite>nanmean</cite>.</p>
 <dd><p>Return repr(self).</p>
 </dd></dl>
 
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">aggregate_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims=&lt;no</span> <span class="pre">value&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where=&lt;no</span> <span class="pre">value&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd><p>Compute the arithmetic mean along the specified axis, ignoring NaNs.</p>
-<p>Returns the average of the array elements.  The average is taken over
-the flattened array by default, otherwise over the specified axis.
-<cite>float64</cite> intermediate and return values are used for integer inputs.</p>
-<p>For all-NaN slices, NaN is returned and a <cite>RuntimeWarning</cite> is raised.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">Added in version 1.8.0.</span></p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<em>array_like</em>) – Array containing numbers whose mean is desired. If <cite>a</cite> is not an
-array, a conversion is attempted.</p></li>
-<li><p><strong>axis</strong> (<em>{int</em><em>, </em><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>None}</em><em>, </em><em>optional</em>) – Axis or axes along which the means are computed. The default is to compute
-the mean of the flattened array.</p></li>
-<li><p><strong>dtype</strong> (<em>data-type</em><em>, </em><em>optional</em>) – Type to use in computing the mean.  For integer inputs, the default
-is <cite>float64</cite>; for inexact inputs, it is the same as the input
-dtype.</p></li>
-<li><p><strong>out</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – Alternate output array in which to place the result.  The default
-is <code class="docutils literal notranslate"><span class="pre">None</span></code>; if provided, it must have the same shape as the
-expected output, but the type will be cast if necessary. See
-<a class="reference external" href="https://numpy.org/doc/stable/user/basics.ufuncs.html#ufuncs-output-type" title="(in NumPy v2.1)"><span>Output type determination</span></a> for more details.</p></li>
-<li><p><strong>keepdims</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – <p>If this is set to True, the axes which are reduced are left
-in the result as dimensions with size one. With this option,
-the result will broadcast correctly against the original <cite>a</cite>.</p>
-<p>If the value is anything but the default, then
-<cite>keepdims</cite> will be passed through to the <cite>mean</cite> or <cite>sum</cite> methods
-of sub-classes of <cite>ndarray</cite>.  If the sub-classes methods
-does not implement <cite>keepdims</cite> any exceptions will be raised.</p>
-</p></li>
-<li><p><strong>where</strong> (<em>array_like</em><em> of </em><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – <p>Elements to include in the mean. See <cite>~numpy.ufunc.reduce</cite> for details.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">Added in version 1.22.0.</span></p>
-</div>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>m</strong> – If <cite>out=None</cite>, returns a new array containing the mean values,
-otherwise a reference to the output array is returned. Nan is
-returned for slices that contain only NaNs.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray, see dtype parameter above</p>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">average</span></code></dt><dd><p>Weighted average</p>
-</dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code></dt><dd><p>Arithmetic mean taken while not ignoring NaNs</p>
-</dd>
-</dl>
-<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">nanvar</span></code></p>
-</div>
-<p class="rubric">Notes</p>
-<p>The arithmetic mean is the sum of the non-NaN elements along the axis
-divided by the number of non-NaN elements.</p>
-<p>Note that for floating-point input, the mean is computed using the same
-precision the input has.  Depending on the input data, this can cause
-the results to be inaccurate, especially for <cite>float32</cite>.  Specifying a
-higher-precision accumulator using the <cite>dtype</cite> keyword can alleviate
-this issue.</p>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="go">2.6666666666666665</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="go">array([2.,  4.])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="go">array([1.,  3.5]) # may vary</span>
-</pre></div>
-</div>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">aggregate_function</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Callable" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id3">
@@ -1322,15 +1248,14 @@ to subset the object.</p>
 <span id="genomicarrays-utils-bw-module"></span><h2>genomicarrays.utils_bw module<a class="headerlink" href="#module-genomicarrays.utils_bw" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="genomicarrays.utils_bw.extract_bw_intervals_as_vec">
-<span class="sig-prename descclassname"><span class="pre">genomicarrays.utils_bw.</span></span><span class="sig-name descname"><span class="pre">extract_bw_intervals_as_vec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_func=&lt;function</span> <span class="pre">nanmean&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/utils_bw.html#extract_bw_intervals_as_vec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.utils_bw.extract_bw_intervals_as_vec" title="Link to this definition">¶</a></dt>
-<dd><p>Extract data from BigWig for a given region and apply the aggregate function.</p>
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.utils_bw.</span></span><span class="sig-name descname"><span class="pre">extract_bw_intervals_as_vec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/utils_bw.html#extract_bw_intervals_as_vec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.utils_bw.extract_bw_intervals_as_vec" title="Link to this definition">¶</a></dt>
+<dd><p>Extract data from BigWig for a given region.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>bw_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the BigWig file.</p></li>
 <li><p><strong>intervals</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – List of intervals to extract.</p></li>
-<li><p><strong>agg_func</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">callable</span></code></span>) – Aggregate function to apply.
-Defaults to np.nanmean.</p></li>
+<li><p><strong>total_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Size of all the regions.</p></li>
 <li><p><strong>val_dtype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a></span>) – Dtype of the resulting array.</p></li>
 </ul>
 </dd>
@@ -1351,6 +1276,41 @@ region or <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.utils_bw.extract_bw_values_as_vec">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.utils_bw.</span></span><span class="sig-name descname"><span class="pre">extract_bw_values_as_vec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_func=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/utils_bw.html#extract_bw_values_as_vec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.utils_bw.extract_bw_values_as_vec" title="Link to this definition">¶</a></dt>
+<dd><p>Extract data from BigWig for a given region and apply the aggregate function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bw_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the BigWig file.</p></li>
+<li><p><strong>intervals</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></span>) – List of intervals to extract.</p></li>
+<li><p><strong>agg_func</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.9/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">callable</span></code>]</span>) – Aggregate function to apply.
+Defaults to None.</p></li>
+<li><p><strong>val_dtype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code></a></span>) – Dtype of the resulting array.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A vector with length as the number of intervals,
+a value if the file contains the data for the corresponding
+region or <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> if the region is not measured.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="genomicarrays.utils_bw.wrapper_extract_bw_values">
+<span class="sig-prename descclassname"><span class="pre">genomicarrays.utils_bw.</span></span><span class="sig-name descname"><span class="pre">wrapper_extract_bw_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_length=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/genomicarrays/utils_bw.html#wrapper_extract_bw_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#genomicarrays.utils_bw.wrapper_extract_bw_values" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1470,7 +1430,7 @@ region or <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__init__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__init__()</span></code></a></li>
 <li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__post_init__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__post_init__()</span></code></a></li>
 <li><a class="reference internal" href="#genomicarrays.build_options.FeatureAnnotationOptions.__repr__"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.__repr__()</span></code></a></li>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.aggregate_function()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.aggregate_function</span></code></a></li>
 <li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.column_types</span></code></a></li>
 <li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.dtype</span></code></a></li>
 <li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">FeatureAnnotationOptions.skip</span></code></a></li>
@@ -1541,6 +1501,8 @@ region or <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <li><a class="reference internal" href="#module-genomicarrays.utils_bw">genomicarrays.utils_bw module</a><ul>
 <li><a class="reference internal" href="#genomicarrays.utils_bw.extract_bw_intervals_as_vec"><code class="docutils literal notranslate"><span class="pre">extract_bw_intervals_as_vec()</span></code></a></li>
 <li><a class="reference internal" href="#genomicarrays.utils_bw.extract_bw_values"><code class="docutils literal notranslate"><span class="pre">extract_bw_values()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.utils_bw.extract_bw_values_as_vec"><code class="docutils literal notranslate"><span class="pre">extract_bw_values_as_vec()</span></code></a></li>
+<li><a class="reference internal" href="#genomicarrays.utils_bw.wrapper_extract_bw_values"><code class="docutils literal notranslate"><span class="pre">wrapper_extract_bw_values()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-genomicarrays">Module contents</a></li>
@@ -1555,7 +1517,7 @@ region or <code class="docutils literal notranslate"><span class="pre">np.nan</s
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=e3a6060d"></script>
+</div><script src="../_static/documentation_options.js?v=47de8214"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>

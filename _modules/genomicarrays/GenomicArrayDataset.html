@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>genomicarrays.GenomicArrayDataset - GenomicArrays 0.0.2 documentation</title>
+        <title>genomicarrays.GenomicArrayDataset - GenomicArrays 0.0.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">GenomicArrays 0.0.2 documentation</div></a>
+      <a href="../../index.html"><div class="brand">GenomicArrays 0.0.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -190,7 +190,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">GenomicArrays 0.0.2 documentation</span>
+  <span class="sidebar-brand-text">GenomicArrays 0.0.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -313,12 +313,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_path</span> <span class="o">=</span> <span class="n">dataset_path</span>
         <span class="c1"># TODO: Maybe switch to on-demand loading of these objects</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_matrix_tdb_tdb</span> <span class="o">=</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">matrix_tdb_uri</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_feature_annotation_tdb</span> <span class="o">=</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">feature_annotation_uri</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sample_metadata_tdb</span> <span class="o">=</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">sample_metadata_uri</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span>
-        <span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_feature_annotation_tdb</span> <span class="o">=</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">feature_annotation_uri</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sample_metadata_tdb</span> <span class="o">=</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">sample_metadata_uri</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GenomicArrayDataset.__del__">
@@ -374,9 +370,7 @@
 
 <div class="viewcode-block" id="GenomicArrayDataset.get_feature_subset">
 <a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_feature_subset">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_feature_subset</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">subset</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">slice</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">QueryCondition</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_feature_subset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subset</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">slice</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">QueryCondition</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Slice the ``feature_annotation`` store.</span>
 
 <span class="sd">        Args:</span>
@@ -411,16 +405,12 @@
                     <span class="n">_not_avail</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">_not_avail</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Columns &#39;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_not_avail</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39; are not available.&quot;</span>
-                <span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columns &#39;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_not_avail</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39; are not available.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">qtd</span><span class="o">.</span><span class="n">_is_list_strings</span><span class="p">(</span><span class="n">subset</span><span class="p">):</span>
             <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_indices_for_gene_list</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">qtd</span><span class="o">.</span><span class="n">subset_frame</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_feature_annotation_tdb</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="n">subset</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">qtd</span><span class="o">.</span><span class="n">subset_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_feature_annotation_tdb</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="n">subset</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span></div>
 
 
     <span class="c1">####</span>
@@ -456,9 +446,7 @@
 
 <div class="viewcode-block" id="GenomicArrayDataset.get_sample_subset">
 <a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_sample_subset">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_sample_subset</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">subset</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">slice</span><span class="p">,</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">QueryCondition</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_sample_subset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subset</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">slice</span><span class="p">,</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">QueryCondition</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Slice the ``sample_metadata`` store.</span>
 
 <span class="sd">        Args:</span>
@@ -489,13 +477,9 @@
                     <span class="n">_not_avail</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">_not_avail</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Columns &#39;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_not_avail</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39; are not available.&quot;</span>
-                <span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columns &#39;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_not_avail</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39; are not available.&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">qtd</span><span class="o">.</span><span class="n">subset_frame</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_sample_metadata_tdb</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="n">subset</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">qtd</span><span class="o">.</span><span class="n">subset_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sample_metadata_tdb</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="n">subset</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span></div>
 
 
     <span class="c1">####</span>
@@ -542,9 +526,7 @@
                     <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">` only supports 2-dimensional slicing.&quot;</span>
-                <span class="p">)</span></div>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">` only supports 2-dimensional slicing.&quot;</span><span class="p">)</span></div>
 
 
     <span class="c1">####</span>
@@ -554,7 +536,7 @@
 <a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.GenomicArrayDataset.GenomicArrayDataset.get_slice">[docs]</a>
     <span class="k">def</span> <span class="nf">get_slice</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">feature_subset</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">slice</span><span class="p">,</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">QueryCondition</span><span class="p">],</span>
+        <span class="n">feature_subset</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">slice</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
         <span class="n">sample_subset</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">slice</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">tiledb</span><span class="o">.</span><span class="n">QueryCondition</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicArrayDatasetSlice</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Subset a ``GenomicArrayDataset``.</span>
@@ -576,14 +558,24 @@
         <span class="n">_ssubset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sample_subset</span><span class="p">(</span><span class="n">sample_subset</span><span class="p">)</span>
         <span class="n">_sample_indices</span> <span class="o">=</span> <span class="n">_ssubset</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">feature_subset</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;feature indices must be continous; either a &#39;slice&#39; or &#39;int&#39; index.&quot;</span><span class="p">)</span>
         <span class="n">_fsubset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_feature_subset</span><span class="p">(</span><span class="n">feature_subset</span><span class="p">)</span>
-        <span class="n">_feature_indices</span> <span class="o">=</span> <span class="n">_fsubset</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">start_findex</span> <span class="o">=</span> <span class="n">_fsubset</span><span class="p">[</span><span class="s2">&quot;genarr_feature_start_index&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">end_findex</span> <span class="o">=</span> <span class="n">_fsubset</span><span class="p">[</span><span class="s2">&quot;genarr_feature_end_index&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
-        <span class="n">_msubset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_matrix_subset</span><span class="p">((</span><span class="n">_feature_indices</span><span class="p">,</span> <span class="n">_sample_indices</span><span class="p">))</span>
+        <span class="c1"># expand intervals</span>
+        <span class="n">final_rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">_fsubset</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">genarr_feature_start_index</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">genarr_feature_end_index</span><span class="p">))):</span>
+                <span class="n">final_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">starts</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="n">row</span><span class="o">.</span><span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="n">row</span><span class="o">.</span><span class="n">starts</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">_feature_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">final_rows</span><span class="p">)</span>
+
+        <span class="n">_msubset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_matrix_subset</span><span class="p">((</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">start_findex</span><span class="p">,</span> <span class="n">end_findex</span><span class="p">)),</span> <span class="n">_sample_indices</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">GenomicArrayDatasetSlice</span><span class="p">(</span>
             <span class="n">_ssubset</span><span class="p">,</span>
-            <span class="n">_fsubset</span><span class="p">,</span>
+            <span class="n">_feature_df</span><span class="p">,</span>
             <span class="n">_msubset</span><span class="p">,</span>
         <span class="p">)</span></div>
 
@@ -633,13 +625,9 @@
             <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slice</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">` only supports 2-dimensional slicing.&quot;</span>
-                <span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">` only supports 2-dimensional slicing.&quot;</span><span class="p">)</span>
 
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-            <span class="s2">&quot;args must be a sequence or a scalar integer or string or a tuple of atmost 2 values.&quot;</span>
-        <span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;args must be a sequence or a scalar integer or string or a tuple of atmost 2 values.&quot;</span><span class="p">)</span></div>
 
 
     <span class="c1">####</span>
@@ -722,7 +710,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=e3a6060d"></script>
+</div><script src="../../_static/documentation_options.js?v=47de8214"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>

@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>genomicarrays.utils_bw - GenomicArrays 0.0.2 documentation</title>
+        <title>genomicarrays.utils_bw - GenomicArrays 0.0.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">GenomicArrays 0.0.2 documentation</div></a>
+      <a href="../../index.html"><div class="brand">GenomicArrays 0.0.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -190,7 +190,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">GenomicArrays 0.0.2 documentation</span>
+  <span class="sidebar-brand-text">GenomicArrays 0.0.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -243,7 +243,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for genomicarrays.utils_bw</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -285,12 +285,33 @@
 <span class="c1">#     )</span>
 
 
-<div class="viewcode-block" id="extract_bw_intervals_as_vec">
-<a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.utils_bw.extract_bw_intervals_as_vec">[docs]</a>
-<span class="k">def</span> <span class="nf">extract_bw_intervals_as_vec</span><span class="p">(</span>
+<div class="viewcode-block" id="wrapper_extract_bw_values">
+<a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.utils_bw.wrapper_extract_bw_values">[docs]</a>
+<span class="k">def</span> <span class="nf">wrapper_extract_bw_values</span><span class="p">(</span>
     <span class="n">bw_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">intervals</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
-    <span class="n">agg_func</span><span class="p">:</span> <span class="nb">callable</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">,</span>
+    <span class="n">agg_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">callable</span><span class="p">],</span>
+    <span class="n">val_dtype</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">total_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">total_length</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">total_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">agg_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">extract_bw_values_as_vec</span><span class="p">(</span><span class="n">bw_path</span><span class="o">=</span><span class="n">bw_path</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span> <span class="n">agg_func</span><span class="o">=</span><span class="n">agg_func</span><span class="p">,</span> <span class="n">val_dtype</span><span class="o">=</span><span class="n">val_dtype</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">extract_bw_intervals_as_vec</span><span class="p">(</span>
+            <span class="n">bw_path</span><span class="o">=</span><span class="n">bw_path</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span> <span class="n">val_dtype</span><span class="o">=</span><span class="n">val_dtype</span><span class="p">,</span> <span class="n">total_length</span><span class="o">=</span><span class="n">total_length</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="extract_bw_values_as_vec">
+<a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.utils_bw.extract_bw_values_as_vec">[docs]</a>
+<span class="k">def</span> <span class="nf">extract_bw_values_as_vec</span><span class="p">(</span>
+    <span class="n">bw_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">intervals</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">agg_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">val_dtype</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract data from BigWig for a given region and apply the aggregate function.</span>
@@ -304,7 +325,7 @@
 
 <span class="sd">        agg_func:</span>
 <span class="sd">            Aggregate function to apply.</span>
-<span class="sd">            Defaults to np.nanmean.</span>
+<span class="sd">            Defaults to None.</span>
 
 <span class="sd">        val_dtype:</span>
 <span class="sd">            Dtype of the resulting array.</span>
@@ -331,6 +352,66 @@
             <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">val_dtype</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_get_empty_array</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">val_dtype</span><span class="p">):</span>
+    <span class="n">out_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">val_dtype</span><span class="p">)</span>
+    <span class="n">out_array</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out_array</span>
+
+
+<div class="viewcode-block" id="extract_bw_intervals_as_vec">
+<a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.utils_bw.extract_bw_intervals_as_vec">[docs]</a>
+<span class="k">def</span> <span class="nf">extract_bw_intervals_as_vec</span><span class="p">(</span>
+    <span class="n">bw_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">intervals</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">total_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">val_dtype</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract data from BigWig for a given region.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        bw_path:</span>
+<span class="sd">            Path to the BigWig file.</span>
+
+<span class="sd">        intervals:</span>
+<span class="sd">            List of intervals to extract.</span>
+
+<span class="sd">        total_length:</span>
+<span class="sd">            Size of all the regions.</span>
+
+<span class="sd">        val_dtype:</span>
+<span class="sd">            Dtype of the resulting array.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A vector with length as the number of intervals,</span>
+<span class="sd">        a value if the file contains the data for the corresponding</span>
+<span class="sd">        region or ``np.nan`` if the region is not measured.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bwfile</span> <span class="o">=</span> <span class="n">bw</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bw_path</span><span class="p">)</span>
+
+    <span class="n">out_array</span> <span class="o">=</span> <span class="n">_get_empty_array</span><span class="p">(</span><span class="n">total_length</span><span class="p">,</span> <span class="n">val_dtype</span><span class="o">=</span><span class="n">val_dtype</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">intervals</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">seqnames</span> <span class="ow">in</span> <span class="n">bwfile</span><span class="o">.</span><span class="n">chroms</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">bwfile</span><span class="o">.</span><span class="n">intervals</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">seqnames</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">starts</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">ends</span><span class="p">)</span>
+                <span class="n">tmp_out</span> <span class="o">=</span> <span class="n">_get_empty_array</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">ends</span> <span class="o">-</span> <span class="n">row</span><span class="o">.</span><span class="n">starts</span><span class="p">,</span> <span class="n">val_dtype</span><span class="o">=</span><span class="n">val_dtype</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                        <span class="n">_strt</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="o">.</span><span class="n">starts</span><span class="p">)</span>
+                        <span class="n">_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="o">.</span><span class="n">starts</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">ends</span><span class="p">)</span>
+                        <span class="n">tmp_out</span><span class="p">[</span><span class="n">_strt</span><span class="p">:</span><span class="n">_end</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+                <span class="n">out_array</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">genarr_feature_index_start</span> <span class="p">:</span> <span class="n">row</span><span class="o">.</span><span class="n">genarr_feature_index_start</span> <span class="o">+</span> <span class="n">row</span><span class="o">.</span><span class="n">ends</span> <span class="o">-</span> <span class="n">row</span><span class="o">.</span><span class="n">starts</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">tmp_out</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">_</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">out_array</span></div>
 
 </pre></div>
         </article>
@@ -364,7 +445,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=e3a6060d"></script>
+</div><script src="../../_static/documentation_options.js?v=47de8214"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
