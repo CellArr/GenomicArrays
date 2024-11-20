@@ -122,7 +122,7 @@ class FeatureAnnotationOptions:
 
         aggregate_function:
             A callable to summarize the values in a given
-            interval. Defaults to NumPy's `nanmean`.
+            interval. Defaults to None.
     """
 
     skip: bool = False

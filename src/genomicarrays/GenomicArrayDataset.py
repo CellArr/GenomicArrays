@@ -64,12 +64,8 @@ class GenomicArrayDataset:
         self._dataset_path = dataset_path
         # TODO: Maybe switch to on-demand loading of these objects
         self._matrix_tdb_tdb = tiledb.open(f"{dataset_path}/{matrix_tdb_uri}", "r")
-        self._feature_annotation_tdb = tiledb.open(
-            f"{dataset_path}/{feature_annotation_uri}", "r"
-        )
-        self._sample_metadata_tdb = tiledb.open(
-            f"{dataset_path}/{sample_metadata_uri}", "r"
-        )
+        self._feature_annotation_tdb = tiledb.open(f"{dataset_path}/{feature_annotation_uri}", "r")
+        self._sample_metadata_tdb = tiledb.open(f"{dataset_path}/{sample_metadata_uri}", "r")
 
     def __del__(self):
         self._matrix_tdb_tdb.close()
@@ -110,9 +106,7 @@ class GenomicArrayDataset:
         res = qtd.get_a_column(self._feature_annotation_tdb, "genarr_feature_index")
         return res["genarr_feature_index"].tolist()
 
-    def get_feature_subset(
-        self, subset: Union[slice, List[str], tiledb.QueryCondition], columns=None
-    ) -> pd.DataFrame:
+    def get_feature_subset(self, subset: Union[slice, List[str], tiledb.QueryCondition], columns=None) -> pd.DataFrame:
         """Slice the ``feature_annotation`` store.
 
         Args:
@@ -147,16 +141,12 @@ class GenomicArrayDataset:
                     _not_avail.append(col)
 
             if len(_not_avail) > 0:
-                raise ValueError(
-                    f"Columns '{', '.join(_not_avail)}' are not available."
-                )
+                raise ValueError(f"Columns '{', '.join(_not_avail)}' are not available.")
 
         if qtd._is_list_strings(subset):
             subset = self._get_indices_for_gene_list(subset)
 
-        return qtd.subset_frame(
-            self._feature_annotation_tdb, subset=subset, columns=columns
-        )
+        return qtd.subset_frame(self._feature_annotation_tdb, subset=subset, columns=columns)
 
     ####
     ## Subset methods for the `sample_metadata` TileDB file.
@@ -183,9 +173,7 @@ class GenomicArrayDataset:
         res = qtd.get_a_column(self._sample_metadata_tdb, column_name=column_name)
         return res[column_name]
 
-    def get_sample_subset(
-        self, subset: Union[slice, tiledb.QueryCondition], columns=None
-    ) -> pd.DataFrame:
+    def get_sample_subset(self, subset: Union[slice, tiledb.QueryCondition], columns=None) -> pd.DataFrame:
         """Slice the ``sample_metadata`` store.
 
         Args:
@@ -216,13 +204,9 @@ class GenomicArrayDataset:
                     _not_avail.append(col)
 
             if len(_not_avail) > 0:
-                raise ValueError(
-                    f"Columns '{', '.join(_not_avail)}' are not available."
-                )
+                raise ValueError(f"Columns '{', '.join(_not_avail)}' are not available.")
 
-        return qtd.subset_frame(
-            self._sample_metadata_tdb, subset=subset, columns=columns
-        )
+        return qtd.subset_frame(self._sample_metadata_tdb, subset=subset, columns=columns)
 
     ####
     ## Subset methods for the `matrix` TileDB file.
@@ -266,16 +250,14 @@ class GenomicArrayDataset:
                     shape=(len(subset[0]), len(subset[1])),
                 )
             else:
-                raise ValueError(
-                    f"`{type(self).__name__}` only supports 2-dimensional slicing."
-                )
+                raise ValueError(f"`{type(self).__name__}` only supports 2-dimensional slicing.")
 
     ####
     ## Subset methods by cell and gene dimensions.
     ####
     def get_slice(
         self,
-        feature_subset: Union[slice, tiledb.QueryCondition],
+        feature_subset: Union[slice, int],
         sample_subset: Union[slice, List[str], tiledb.QueryCondition],
     ) -> GenomicArrayDatasetSlice:
         """Subset a ``GenomicArrayDataset``.
@@ -297,14 +279,29 @@ class GenomicArrayDataset:
         _ssubset = self.get_sample_subset(sample_subset)
         _sample_indices = _ssubset.index.tolist()
 
+        if not isinstance(feature_subset, (int, slice)):
+            raise TypeError("feature indices must be continous; either a 'slice' or 'int' index.")
         _fsubset = self.get_feature_subset(feature_subset)
-        _feature_indices = _fsubset.index.tolist()
+        print(_fsubset)
+        start_findex = _fsubset["genarr_feature_start_index"].astype(int).min()
+        end_findex = _fsubset["genarr_feature_end_index"].astype(int).max()
 
-        _msubset = self.get_matrix_subset((_feature_indices, _sample_indices))
+        print(start_findex, end_findex)
+
+        # expand intervals
+        final_rows = []
+        for row in _fsubset.itertuples():
+            for i, _ in enumerate(range(int(row.genarr_feature_start_index), int(row.genarr_feature_end_index))):
+                final_rows.append(row._replace(starts=i + row.starts, ends=i + row.starts + 1))
+        _feature_df = pd.DataFrame(final_rows)
+
+        print(_feature_df)
+
+        _msubset = self.get_matrix_subset((list(range(start_findex, end_findex)), _sample_indices))
 
         return GenomicArrayDatasetSlice(
             _ssubset,
-            _fsubset,
+            _feature_df,
             _msubset,
         )
 
@@ -351,13 +348,9 @@ class GenomicArrayDataset:
             elif len(args) == 2:
                 return self.get_slice(args[0], args[1])
             else:
-                raise ValueError(
-                    f"`{type(self).__name__}` only supports 2-dimensional slicing."
-                )
+                raise ValueError(f"`{type(self).__name__}` only supports 2-dimensional slicing.")
 
-        raise TypeError(
-            "args must be a sequence or a scalar integer or string or a tuple of atmost 2 values."
-        )
+        raise TypeError("args must be a sequence or a scalar integer or string or a tuple of atmost 2 values.")
 
     ####
     ## Misc methods.

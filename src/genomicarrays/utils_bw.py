@@ -40,7 +40,7 @@ def extract_bw_values(
 def wrapper_extract_bw_values(
     bw_path: str,
     intervals: pd.DataFrame,
-    agg_func: Optional[callable] = None,
+    agg_func: Optional[callable],
     val_dtype: np.dtype = np.float32,
     total_length: int = None,
 ) -> np.ndarray:
@@ -58,7 +58,7 @@ def wrapper_extract_bw_values(
 def extract_bw_values_as_vec(
     bw_path: str,
     intervals: pd.DataFrame,
-    agg_func: callable = np.nanmean,
+    agg_func: Optional[callable] = None,
     val_dtype: np.dtype = np.float32,
 ) -> np.ndarray:
     """Extract data from BigWig for a given region and apply the aggregate function.
@@ -149,7 +149,9 @@ def extract_bw_intervals_as_vec(
                         _end = min(d[1] - row.starts, row.ends)
                         tmp_out[_strt:_end] = d[2]
 
-                out_array[row.genarr_feature_index_start : row.ends - row.starts] = tmp_out
+                out_array[row.genarr_feature_index_start : row.genarr_feature_index_start + row.ends - row.starts] = (
+                    tmp_out
+                )
             except Exception as _:
                 pass
 
