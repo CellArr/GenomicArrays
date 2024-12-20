@@ -8,10 +8,16 @@ Example:
 
     .. code-block:: python
 
-        from genomicarray import GenomicArrayDataset
+        from genomicarray import (
+            GenomicArrayDataset,
+        )
 
-        garr = GenomicArrayDataset(dataset_path="/path/to/genomicarray/dir")
-        result1 = garr[0:10, 0]
+        garr = GenomicArrayDataset(
+            dataset_path="/path/to/genomicarray/dir"
+        )
+        result1 = garr[
+            0:10, 0
+        ]
 
         print(result1)
 """
