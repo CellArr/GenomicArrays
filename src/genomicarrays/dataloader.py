@@ -7,7 +7,9 @@ Example:
 
     .. code-block:: python
 
-        from genomicarrays.dataloader import TorchDataset
+        from genomicarrays.dataloader import (
+            TorchDataset,
+        )
 
         ds = TorchDataset(
             dataset_path="/path/to/genarr/dir"
