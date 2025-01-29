@@ -179,14 +179,16 @@ def build_genomicarray(
     # append start index for each interval
     input_intervals["widths"] = input_intervals["ends"] - input_intervals["starts"]
     total_length = None
+    outsize_per_feature = 1
     if feature_annotation_options.aggregate_function is None:
         total_length = int(input_intervals["widths"].sum())
         counter = input_intervals["widths"].shift(1)
         counter[0] = 0
         input_intervals["genarr_feature_start_index"] = counter.cumsum().astype(int)
     else:
-        counter = [1] * len(input_intervals)
-        total_length = len(input_intervals)
+        outsize_per_feature = feature_annotation_options.expected_agg_function_length
+        counter = [outsize_per_feature] * len(input_intervals)
+        total_length = len(input_intervals) * outsize_per_feature
         counter[0] = 0
         input_intervals["genarr_feature_start_index"] = pd.Series(counter).cumsum().astype(int)
 
@@ -272,6 +274,7 @@ def build_genomicarray(
                 idx,
                 feature_annotation_options.aggregate_function,
                 total_length,
+                outsize_per_feature,
             )
             for idx, bwpath in enumerate(files)
         ]
@@ -294,7 +297,7 @@ def build_genomicarray(
     )
 
 
-def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func, total_length):
+def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func, total_length, outsize_per_feature):
     """Wrapper to extract the data for the given intervals from the bigwig file and write the output to the tiledb
     file."""
     data = ubw.wrapper_extract_bw_values(
@@ -302,6 +305,7 @@ def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func, tota
         intervals=intervals,
         agg_func=agg_func,
         total_length=total_length,
+        outsize_per_feature=outsize_per_feature,
     )
 
     if data is not None and len(data) > 0:
@@ -310,5 +314,5 @@ def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func, tota
 
 def _wrapper_extract_bwinfo(args):
     """Wrapper for multiprocessing multiple files and intervals."""
-    counts_uri, input_intervals, bwpath, idx, agg_func, total_length = args
-    return _write_intervals_to_tiledb(counts_uri, input_intervals, bwpath, idx, agg_func, total_length)
+    counts_uri, input_intervals, bwpath, idx, agg_func, total_length, outsize_per_feature = args
+    return _write_intervals_to_tiledb(counts_uri, input_intervals, bwpath, idx, agg_func, total_length, outsize_per_feature)
