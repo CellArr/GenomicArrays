@@ -5,8 +5,8 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>genomicarrays.build_options - GenomicArrays 0.2.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+        <title>genomicarrays.build_options - GenomicArrays 0.2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=302659d7" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">GenomicArrays 0.2.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">GenomicArrays 0.2.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -190,7 +190,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">GenomicArrays 0.2.0 documentation</span>
+  <span class="sidebar-brand-text">GenomicArrays 0.2.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -243,10 +243,10 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for genomicarrays.build_options</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Jayaram Kancherla&quot;</span>
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Jayaram Kancherla&quot;</span>
@@ -256,7 +256,7 @@
 <div class="viewcode-block" id="MatrixOptions">
 <a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.build_options.MatrixOptions">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">MatrixOptions</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MatrixOptions</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional arguments for the ``matrix`` store for :py:func:`~genomicarrays.build_genomicarray.build_genomicarray`.</span>
 
 <span class="sd">    Attributes:</span>
@@ -299,7 +299,7 @@
 
 <div class="viewcode-block" id="MatrixOptions.__post_init__">
 <a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.build_options.MatrixOptions.__post_init__">[docs]</a>
-    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate configuration.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compression</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;zstd&quot;</span><span class="p">,</span> <span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="s2">&quot;lz4&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">}:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported compression: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -313,7 +313,7 @@
 <div class="viewcode-block" id="SampleMetadataOptions">
 <a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.build_options.SampleMetadataOptions">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">SampleMetadataOptions</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SampleMetadataOptions</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional arguments for the ``sample`` store for :py:func:`~genomicarrays.build_genomicarray.build_genomicarray`.</span>
 
 <span class="sd">    Attributes:</span>
@@ -350,7 +350,7 @@
 <div class="viewcode-block" id="FeatureAnnotationOptions">
 <a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.build_options.FeatureAnnotationOptions">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">FeatureAnnotationOptions</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FeatureAnnotationOptions</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional arguments for the ``feature`` store for :py:func:`~genomicarrays.build_genomicarray.build_genomicarray`.</span>
 
 <span class="sd">    Attributes:</span>
@@ -378,7 +378,18 @@
 
 <span class="sd">        aggregate_function:</span>
 <span class="sd">            A callable to summarize the values in a given</span>
-<span class="sd">            interval. Defaults to None.</span>
+<span class="sd">            interval. The aggregate function is expected to</span>
+<span class="sd">            return either a scalar value or a 1-dimensional</span>
+<span class="sd">            NumPy `ndarray`.</span>
+<span class="sd">            </span>
+<span class="sd">            Defaults to None.</span>
+
+<span class="sd">        expected_agg_function_length:</span>
+<span class="sd">            Length of the output when a agg function is applied</span>
+<span class="sd">            to an interval. Defaults to 1, expecting a scalar.</span>
+
+<span class="sd">            Note: `ndarrays` will be flattenned before writing to</span>
+<span class="sd">            TileDB.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">skip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
@@ -386,10 +397,11 @@
     <span class="n">tiledb_store_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;feature_annotation&quot;</span>
     <span class="n">column_types</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">aggregate_function</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">expected_agg_function_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
 
 <div class="viewcode-block" id="FeatureAnnotationOptions.__post_init__">
 <a class="viewcode-back" href="../../api/genomicarrays.html#genomicarrays.build_options.FeatureAnnotationOptions.__post_init__">[docs]</a>
-    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_types</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">column_types</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;seqnames&quot;</span><span class="p">:</span> <span class="s2">&quot;ascii&quot;</span><span class="p">,</span> <span class="s2">&quot;starts&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;ends&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">}</span></div>
 </div>
@@ -426,7 +438,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+</div><script src="../../_static/documentation_options.js?v=37f418d5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
