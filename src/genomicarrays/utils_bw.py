@@ -43,12 +43,22 @@ def wrapper_extract_bw_values(
     agg_func: Optional[callable],
     val_dtype: np.dtype = np.float32,
     total_length: int = None,
+    outsize_per_feature: int = 1,
 ) -> np.ndarray:
+    print("outsize_per_feature", outsize_per_feature)
+
     if total_length is None:
         total_length = len(intervals)
 
     if agg_func is not None:
-        return extract_bw_values_as_vec(bw_path=bw_path, intervals=intervals, agg_func=agg_func, val_dtype=val_dtype)
+        return extract_bw_values_as_vec(
+            bw_path=bw_path,
+            intervals=intervals,
+            agg_func=agg_func,
+            val_dtype=val_dtype,
+            total_length=total_length,
+            outsize_per_feature=outsize_per_feature,
+        )
     else:
         return extract_bw_intervals_as_vec(
             bw_path=bw_path, intervals=intervals, val_dtype=val_dtype, total_length=total_length
@@ -58,8 +68,10 @@ def wrapper_extract_bw_values(
 def extract_bw_values_as_vec(
     bw_path: str,
     intervals: pd.DataFrame,
+    total_length: int,
     agg_func: Optional[callable] = None,
     val_dtype: np.dtype = np.float32,
+    outsize_per_feature: int = 1,
 ) -> np.ndarray:
     """Extract data from BigWig for a given region and apply the aggregate function.
 
@@ -77,26 +89,29 @@ def extract_bw_values_as_vec(
         val_dtype:
             Dtype of the resulting array.
 
+        total_length:
+            Size of all the regions.
+
+        outsize_per_feature:
+            Expected length of output after applying the ``agg_func``.
+
     Returns:
-        A vector with length as the number of intervals,
+        A vector with length as number of intervals X outsize_per_feature,
         a value if the file contains the data for the corresponding
         region or ``np.nan`` if the region is not measured.
     """
     bwfile = bw.open(bw_path)
 
-    results = []
-    for row in intervals.itertuples():
+    results = _get_empty_array(total_length, val_dtype=val_dtype)
+    for i, row in enumerate(intervals.itertuples()):
+        start_idx = i * outsize_per_feature
         if row.seqnames in bwfile.chroms():
             try:
                 data = bwfile.values(row.seqnames, row.starts, row.ends, numpy=True)
                 if data is not None and len(data) != 0:
-                    results.append(agg_func(data))
-                else:
-                    results.append(np.nan)
+                    results[start_idx : start_idx + outsize_per_feature] = agg_func(data).flatten()
             except Exception as _:
-                results.append(np.nan)
-        else:
-            results.append(np.nan)
+                pass
 
     return np.array(results, dtype=val_dtype)
 

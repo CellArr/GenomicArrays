@@ -10,7 +10,8 @@
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter)](https://twitter.com/GenomicArrays)
 -->
 
-[![Project generated with PyScaffold](https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold)](https://pyscaffold.org/)
+[![PyPI-Server](https://img.shields.io/pypi/v/GenomicArrays.svg)](https://pypi.org/project/GenomicArrays/)
+![Unit tests](https://github.com/CellArr/GenomicArrays/actions/workflows/run-tests.yml/badge.svg)
 
 # Genomic Arrays based on TileDB
 
@@ -80,8 +81,16 @@ dataset = garr.build_genomicarray(
 )
 ```
 
-The build process stores missing intervals from a bigwig file as `np.nan`. The
-default is to choose an aggregate functions that works with `np.nan`.
+> [!NOTE]
+> - The aggregate function is expected to return either a scalar value or a 1-dimensional NumPy ndarray. If the later, users need to specify the expected dimension of the return array. e.g. 
+>   ```python
+>         feature_annotation_options=garr.FeatureAnnotationOptions(
+>               aggregate_function = my_custom_func,
+>               expected_agg_function_length = 10,
+>          ),
+> - The build process stores missing intervals from a bigwig file as `np.nan`. The default is to choose an aggregate functions that works with `np.nan`.
+
+
 
 ### Query a `GenomicArrayDataset`
 

@@ -122,7 +122,18 @@ class FeatureAnnotationOptions:
 
         aggregate_function:
             A callable to summarize the values in a given
-            interval. Defaults to None.
+            interval. The aggregate function is expected to
+            return either a scalar value or a 1-dimensional
+            NumPy `ndarray`.
+            
+            Defaults to None.
+
+        expected_agg_function_length:
+            Length of the output when a agg function is applied
+            to an interval. Defaults to 1, expecting a scalar.
+
+            Note: `ndarrays` will be flattenned before writing to
+            TileDB.
     """
 
     skip: bool = False
@@ -130,6 +141,7 @@ class FeatureAnnotationOptions:
     tiledb_store_name: str = "feature_annotation"
     column_types: Dict[str, np.dtype] = None
     aggregate_function: Optional[Callable] = None
+    expected_agg_function_length: int = 1
 
     def __post_init__(self):
         if self.column_types is None:
