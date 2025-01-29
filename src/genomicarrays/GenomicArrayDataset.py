@@ -292,17 +292,17 @@ class GenomicArrayDataset:
         end_findex = _fsubset["genarr_feature_end_index"].astype(int).max()
 
         # expand intervals
-        final_rows = []
-        for row in _fsubset.itertuples():
-            for i, _ in enumerate(range(int(row.genarr_feature_start_index), int(row.genarr_feature_end_index))):
-                final_rows.append(row._replace(starts=i + row.starts, ends=i + row.starts + 1))
-        _feature_df = pd.DataFrame(final_rows)
+        # final_rows = []
+        # for row in _fsubset.itertuples():
+        #     for i, _ in enumerate(range(int(row.genarr_feature_start_index), int(row.genarr_feature_end_index))):
+        #         final_rows.append(row._replace(starts=i + row.starts, ends=i + row.starts + 1))
+        # _feature_df = pd.DataFrame(final_rows)
 
         _msubset = self.get_matrix_subset((list(range(start_findex, end_findex)), _sample_indices))
 
         return GenomicArrayDatasetSlice(
             _ssubset,
-            _feature_df,
+            _fsubset,
             _msubset,
         )
 

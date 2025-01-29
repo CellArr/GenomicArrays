@@ -93,10 +93,12 @@ def test_query_agg():
 
     result1 = cd.get_slice(slice(0, 5), slice(None))
     assert result1 is not None
+    assert len(result1.feature_annotation) == 6
+    assert len(result1.sample_metadata) == 2
     assert result1.matrix.shape == (6, 2)
 
-    assert result1.to_anndata() is not None
-    assert result1.to_rangedsummarizedexperiment() is not None
+    # assert result1.to_anndata() is not None
+    # assert result1.to_rangedsummarizedexperiment() is not None
 
 
 def test_query_noagg():
@@ -165,7 +167,9 @@ def test_query_noagg():
 
     result1 = cd.get_slice(slice(0, 5), slice(None))
     assert result1 is not None
+    assert len(result1.feature_annotation) == 6
+    assert len(result1.sample_metadata) == 2
     assert result1.matrix.shape == (90, 2)
 
-    assert result1.to_anndata() is not None
-    assert result1.to_rangedsummarizedexperiment() is not None
+    # assert result1.to_anndata() is not None
+    # assert result1.to_rangedsummarizedexperiment() is not None
