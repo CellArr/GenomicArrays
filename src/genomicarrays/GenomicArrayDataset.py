@@ -287,6 +287,7 @@ class GenomicArrayDataset:
 
         if not isinstance(feature_subset, (int, slice)):
             raise TypeError("feature indices must be continous; either a 'slice' or 'int' index.")
+
         _fsubset = self.get_feature_subset(feature_subset)
         start_findex = _fsubset["genarr_feature_start_index"].astype(int).min()
         end_findex = _fsubset["genarr_feature_end_index"].astype(int).max()
