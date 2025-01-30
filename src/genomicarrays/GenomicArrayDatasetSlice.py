@@ -51,22 +51,22 @@ class GenomicArrayDatasetSlice:
     ## Interop
     ####
 
-    def to_anndata(self):
-        """Convert the realized slice to :py:class:`~anndata.AnnData`."""
-        return anndata.AnnData(
-            layers={"matrix": self.matrix.transpose()},
-            obs=self.sample_metadata,
-            var=self.feature_annotation,
-        )
+    # def to_anndata(self):
+    #     """Convert the realized slice to :py:class:`~anndata.AnnData`."""
+    #     return anndata.AnnData(
+    #         layers={"matrix": self.matrix.transpose()},
+    #         obs=self.sample_metadata,
+    #         var=self.feature_annotation,
+    #     )
 
-    def to_rangedsummarizedexperiment(self):
-        """Convert the realized slice to
-        :py:class:`~summarizedexperiment.RangedSummarizedExperiment.RangedSummarizedExperiment`."""
-        return se.RangedSummarizedExperiment(
-            assays={"matrix": self.matrix},
-            row_ranges=gr.GenomicRanges.from_pandas(self.feature_annotation),
-            column_data=self.sample_metadata,
-        )
+    # def to_rangedsummarizedexperiment(self):
+    #     """Convert the realized slice to
+    #     :py:class:`~summarizedexperiment.RangedSummarizedExperiment.RangedSummarizedExperiment`."""
+    #     return se.RangedSummarizedExperiment(
+    #         assays={"matrix": self.matrix},
+    #         row_ranges=gr.GenomicRanges.from_pandas(self.feature_annotation),
+    #         column_data=self.sample_metadata,
+    #     )
 
     ####
     ## Misc methods.
