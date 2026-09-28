@@ -38,7 +38,6 @@ Example:
 import os
 import warnings
 from multiprocessing import Pool
-from typing import Union
 
 import pandas as pd
 from cellarr import buildutils_tiledb_frame as utf
@@ -58,10 +57,10 @@ __license__ = "MIT"
 def build_genomicarray(
     files: list,
     output_path: str,
-    features: Union[str, pd.DataFrame],
+    features: str | pd.DataFrame,
     genome_fasta: str,
     # genome: Union[str, pd.DataFrame] = "hg38",
-    sample_metadata: Union[pd.DataFrame, str] = None,
+    sample_metadata: pd.DataFrame | str = None,
     sample_metadata_options: bopt.SampleMetadataOptions = bopt.SampleMetadataOptions(),
     matrix_options: bopt.MatrixOptions = bopt.MatrixOptions(),
     feature_annotation_options: bopt.FeatureAnnotationOptions = bopt.FeatureAnnotationOptions(),
@@ -209,7 +208,7 @@ def build_genomicarray(
         _col_types = utf.infer_column_types(input_intervals, feature_annotation_options.column_types)
 
         if "genarr_feature_index" not in input_intervals.columns:
-            input_intervals["genarr_feature_index"] = range(0, len(input_intervals))
+            input_intervals["genarr_feature_index"] = range(len(input_intervals))
 
         _feature_output_uri = f"{output_path}/{feature_annotation_options.tiledb_store_name}"
         utf.create_tiledb_frame_from_dataframe(_feature_output_uri, input_intervals, column_types=_col_types)
@@ -315,4 +314,6 @@ def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func, tota
 def _wrapper_extract_bwinfo(args):
     """Wrapper for multiprocessing multiple files and intervals."""
     counts_uri, input_intervals, bwpath, idx, agg_func, total_length, outsize_per_feature = args
-    return _write_intervals_to_tiledb(counts_uri, input_intervals, bwpath, idx, agg_func, total_length, outsize_per_feature)
+    return _write_intervals_to_tiledb(
+        counts_uri, input_intervals, bwpath, idx, agg_func, total_length, outsize_per_feature
+    )
