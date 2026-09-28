@@ -19,7 +19,6 @@ Example:
 """
 
 import logging
-from typing import Union
 
 from torch.utils.data import Dataset
 
@@ -37,7 +36,7 @@ class TorchDataset(Dataset):
     """A class that extends pytorch :py:class:`~torch.utils.data.Dataset` to enumerate features and samples using
     TileDB."""
 
-    def __init__(self, dataset_path: Union[str, GenomicArrayDataset]):
+    def __init__(self, dataset_path: str | GenomicArrayDataset):
         """Initialize a ``gaTorchDataset``.
 
         Args:
