@@ -23,7 +23,7 @@ Example:
 """
 
 import os
-from typing import List, Sequence, Union
+from collections.abc import Sequence
 
 import pandas as pd
 import tiledb
@@ -81,7 +81,7 @@ class GenomicArrayDataset:
     ####
     ## Subset methods for the `feature_annotation` TileDB file.
     ####
-    def get_feature_annotation_columns(self) -> List[str]:
+    def get_feature_annotation_columns(self) -> list[str]:
         """Get annotation column names from ``feature_annotation`` store.
 
         Returns:
@@ -103,7 +103,7 @@ class GenomicArrayDataset:
         res = qtd.get_a_column(self._feature_annotation_tdb, column_name=column_name)
         return res[column_name]
 
-    def get_feature_annotation_index(self) -> List[str]:
+    def get_feature_annotation_index(self) -> list[str]:
         """Get index of the ``feature_annotation`` store.
 
         Returns:
@@ -112,7 +112,7 @@ class GenomicArrayDataset:
         res = qtd.get_a_column(self._feature_annotation_tdb, "genarr_feature_index")
         return res["genarr_feature_index"].tolist()
 
-    def get_feature_subset(self, subset: Union[slice, List[str], tiledb.QueryCondition], columns=None) -> pd.DataFrame:
+    def get_feature_subset(self, subset: slice | list[str] | tiledb.QueryCondition, columns=None) -> pd.DataFrame:
         """Slice the ``feature_annotation`` store.
 
         Args:
@@ -157,7 +157,7 @@ class GenomicArrayDataset:
     ####
     ## Subset methods for the `sample_metadata` TileDB file.
     ####
-    def get_sample_metadata_columns(self) -> List[str]:
+    def get_sample_metadata_columns(self) -> list[str]:
         """Get column names from ``sample_metadata`` store.
 
         Returns:
@@ -179,7 +179,7 @@ class GenomicArrayDataset:
         res = qtd.get_a_column(self._sample_metadata_tdb, column_name=column_name)
         return res[column_name]
 
-    def get_sample_subset(self, subset: Union[slice, tiledb.QueryCondition], columns=None) -> pd.DataFrame:
+    def get_sample_subset(self, subset: slice | tiledb.QueryCondition, columns=None) -> pd.DataFrame:
         """Slice the ``sample_metadata`` store.
 
         Args:
@@ -217,7 +217,7 @@ class GenomicArrayDataset:
     ####
     ## Subset methods for the `matrix` TileDB file.
     ####
-    def get_matrix_subset(self, subset: Union[int, Sequence, tuple]) -> pd.DataFrame:
+    def get_matrix_subset(self, subset: int | Sequence | tuple) -> pd.DataFrame:
         """Slice the ``matrix`` store.
 
         Args:
@@ -263,8 +263,8 @@ class GenomicArrayDataset:
     ####
     def get_slice(
         self,
-        feature_subset: Union[slice, int],
-        sample_subset: Union[slice, List[str], tiledb.QueryCondition],
+        feature_subset: slice | int,
+        sample_subset: slice | list[str] | tiledb.QueryCondition,
     ) -> GenomicArrayDatasetSlice:
         """Subset a ``GenomicArrayDataset``.
 
@@ -312,7 +312,7 @@ class GenomicArrayDataset:
     ####
     def __getitem__(
         self,
-        args: Union[int, Sequence, tuple],
+        args: int | Sequence | tuple,
     ) -> GenomicArrayDatasetSlice:
         """Subset a ``GenomicArrayDataset``.
 
