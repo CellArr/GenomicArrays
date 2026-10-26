@@ -29,10 +29,7 @@ Example:
 from dataclasses import dataclass
 from typing import Any
 
-import anndata
-import genomicranges as gr
 import pandas as pd
-import summarizedexperiment as se
 
 __author__ = "Jayaram Kancherla"
 __copyright__ = "Jayaram Kancherla"
