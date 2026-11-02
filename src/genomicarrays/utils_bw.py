@@ -1,5 +1,3 @@
-from typing import Optional, Tuple
-
 import numpy as np
 import pandas as pd
 import pyBigWig as bw
@@ -12,7 +10,7 @@ __license__ = "MIT"
 def extract_bw_values(
     bw_path: str,
     chrom: str,
-) -> Tuple[np.ndarray, int]:
+) -> tuple[np.ndarray, int]:
     bwfile = bw.open(bw_path)
     if chrom not in bwfile.chroms():
         return None, None
@@ -40,7 +38,7 @@ def extract_bw_values(
 def wrapper_extract_bw_values(
     bw_path: str,
     intervals: pd.DataFrame,
-    agg_func: Optional[callable],
+    agg_func: callable | None,
     val_dtype: np.dtype = np.float32,
     total_length: int = None,
     outsize_per_feature: int = 1,
@@ -69,7 +67,7 @@ def extract_bw_values_as_vec(
     bw_path: str,
     intervals: pd.DataFrame,
     total_length: int,
-    agg_func: Optional[callable] = None,
+    agg_func: callable | None = None,
     val_dtype: np.dtype = np.float32,
     outsize_per_feature: int = 1,
 ) -> np.ndarray:
