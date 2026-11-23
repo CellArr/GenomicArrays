@@ -57,32 +57,26 @@ bw_dir = "your/biwig/dir"
 files = os.listdir(bw_dir)
 bw_files = [f"{bw_dir}/{f}" for f in files]
 
-features = pd.DataFrame({
-     "seqnames": ["chr1", "chr1"],
-     "starts": [1000, 2000],
-     "ends": [1500, 2500]
-})
+features = pd.DataFrame({"seqnames": ["chr1", "chr1"], "starts": [1000, 2000], "ends": [1500, 2500]})
 
 # Build GenomicArray
 dataset = garr.build_genomicarray(
-     files=bw_files,
-     output_path=tempdir,
-     features=features,
-     # Specify a fasta file to extract sequences
-     # for each region in features
-     genome_fasta="path/to/genome.fasta",
-     # agg function to summarize mutiple values
-     # from bigwig within an input feature interval.
-     feature_annotation_options=garr.FeatureAnnotationOptions(
-        aggregate_function = np.nanmean
-     ),
-     # for parallel processing multiple bigwig files
-     num_threads=4
+    files=bw_files,
+    output_path=tempdir,
+    features=features,
+    # Specify a fasta file to extract sequences
+    # for each region in features
+    genome_fasta="path/to/genome.fasta",
+    # agg function to summarize mutiple values
+    # from bigwig within an input feature interval.
+    feature_annotation_options=garr.FeatureAnnotationOptions(aggregate_function=np.nanmean),
+    # for parallel processing multiple bigwig files
+    num_threads=4,
 )
 ```
 
 > [!NOTE]
-> - The aggregate function is expected to return either a scalar value or a 1-dimensional NumPy ndarray. If the later, users need to specify the expected dimension of the return array. e.g. 
+> - The aggregate function is expected to return either a scalar value or a 1-dimensional NumPy ndarray. If the later, users need to specify the expected dimension of the return array. e.g.
 >   ```python
 >         feature_annotation_options=garr.FeatureAnnotationOptions(
 >               aggregate_function = my_custom_func,

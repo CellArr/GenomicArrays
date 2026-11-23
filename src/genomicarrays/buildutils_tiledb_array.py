@@ -1,6 +1,5 @@
 import os
 import shutil
-from typing import Union
 
 import numpy as np
 import tiledb
@@ -108,7 +107,7 @@ def create_tiledb_array(
 
 
 def write_frame_intervals_to_tiledb(
-    tiledb_array_uri: Union[str, tiledb.SparseArray],
+    tiledb_array_uri: str | tiledb.SparseArray,
     data: np.ndarray,
     y_idx: int,
     value_dtype: np.dtype = np.float32,
@@ -142,7 +141,7 @@ def write_frame_intervals_to_tiledb(
 
 
 def write_array_chunks_to_tiledb(
-    tiledb_array_uri: Union[str, tiledb.SparseArray],
+    tiledb_array_uri: str | tiledb.SparseArray,
     data: np.ndarray,
     x_idx: np.ndarray,
     y_idx: int,
@@ -167,7 +166,7 @@ def optimize_tiledb_array(tiledb_array_uri: str, verbose: bool = True):
 
     frags = tiledb.array_fragments(tiledb_array_uri)
     if verbose:
-        print("Fragments before consolidation: {}".format(len(frags)))
+        print(f"Fragments before consolidation: {len(frags)}")
 
     cfg = tiledb.Config()
     cfg["sm.consolidation.step_min_frags"] = 1
@@ -177,4 +176,4 @@ def optimize_tiledb_array(tiledb_array_uri: str, verbose: bool = True):
 
     frags = tiledb.array_fragments(tiledb_array_uri)
     if verbose:
-        print("Fragments after consolidation: {}".format(len(frags)))
+        print(f"Fragments after consolidation: {len(frags)}")
