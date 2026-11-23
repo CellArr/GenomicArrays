@@ -1,5 +1,6 @@
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Dict, Literal, Optional, Callable
+from typing import Literal
 
 import numpy as np
 
@@ -90,7 +91,7 @@ class SampleMetadataOptions:
     skip: bool = False
     dtype: np.dtype = np.uint32
     tiledb_store_name: str = "sample_metadata"
-    column_types: Dict[str, np.dtype] = None
+    column_types: dict[str, np.dtype] = None
 
 
 @dataclass
@@ -125,7 +126,7 @@ class FeatureAnnotationOptions:
             interval. The aggregate function is expected to
             return either a scalar value or a 1-dimensional
             NumPy `ndarray`.
-            
+
             Defaults to None.
 
         expected_agg_function_length:
@@ -139,8 +140,8 @@ class FeatureAnnotationOptions:
     skip: bool = False
     dtype: np.dtype = np.uint32
     tiledb_store_name: str = "feature_annotation"
-    column_types: Dict[str, np.dtype] = None
-    aggregate_function: Optional[Callable] = None
+    column_types: dict[str, np.dtype] = None
+    aggregate_function: Callable | None = None
     expected_agg_function_length: int = 1
 
     def __post_init__(self):
